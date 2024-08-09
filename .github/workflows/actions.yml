@@ -1,51 +1,51 @@
-name: deploy
+# 静的コンテンツを GitHub Pages にデプロイするためのシンプルなワークフロー
+name: Deploy static content to Pages
 
 on:
+  # デフォルトブランチを対象としたプッシュ時にで実行されます
   push:
     branches: ['main']
+
+  # Actions タブから手動でワークフローを実行できるようにします
   workflow_dispatch:
 
+# GITHUB_TOKEN のパーミッションを設定し、GitHub Pages へのデプロイを許可します
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# 1 つの同時デプロイメントを可能にする
 concurrency:
   group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          # yarnのキャッシュを効かすために設定 (npmのかたはnpmで)
-          cache: yarn
-      - name: yarn install
-        run: yarn install
-      - name: yarn build
-        run: yarn force-build
-        # GIthubページは https://USERNAME.github.io/REPOSITORY_NAME/
-        # となるので、envを追加してviteのベースパスを変えるように設定します。
-        env:
-          GITHUB_PAGES: true
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./dist
-
+  # デプロイするだけなので、単一のデプロイジョブ
   deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # dist フォルダーのアップロード
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v4
