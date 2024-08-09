@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react-swc'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: process.env.GITHUB_PAGES ? 'REPOSITORY_NAME' : './',
+  base: import.meta.env.DEV
+    ? "/"
+    : "/station_sign_generator/",
+
   plugins: [react()],
 })
