@@ -13,6 +13,7 @@ interface StationProps {
   baseColor: string;
   ratio: number;
   stationNumber?: string;
+  direction?: 'left' | 'right' | 'both';
 }
 
 export default StationProps
