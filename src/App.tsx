@@ -1,32 +1,46 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Button } from '@mui/material'
-import { Rect, Layer, Stage } from 'react-konva'
-import styled from 'styled-components'
+import { Button, TextField } from '@mui/material'
+import Header from './components/Header'
+import JrEastSign from './components/signs/JrEastSign'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+
+  const [stationName, setStationName] = useState('高輪ゲートウェイ');
+  const [ratio, setRatio] = useState(5);
+
+  //Color definitions
+  const color = {
+    main: '#36ab33',
+    line: '#89ff12',
+  }
 
   return (
     <>
-      <SignWrapper>
-        <Stage width={100} height={100}>
-          <Layer>
-            <Rect fill='white' x={0} y={0} width={100} height={100} />
-            <Rect fill='red' x={2} y={2} width={60} height={30} />
-          </Layer>
-        </Stage>
-      </SignWrapper>
-      <Button variant="contained">unchiburi</Button>
+      <Header />
+      <JrEastSign
+        stationName={stationName}
+        stationNameFurigana='たかなわげーとうぇい'
+        stationNameEnglish='Takanawa Gateway'
+        leftStationName='品川'
+        leftStationNameEnglish='Shinagawa'
+        rightStationName='田町'
+        rightStationNameEnglish='Tamachi'
+        lineColor={color.line}
+        baseColor={color.main}
+        ratio={ratio}
+      />
+      <TextField id="stationName" label="駅名" variant="outlined" value={stationName} onChange={(e) => { setStationName(e.target.value) }} />
+      <Button variant="contained" onClick={() => {
+        if (ratio == 7) {
+          setRatio(3)
+        } else {
+          setRatio(ratio + 2)
+        }
+      }}>unchiburi</Button>
     </>
   )
 }
 
-const SignWrapper = styled.div`
-width: 100%;
-background: blue;
-`
+
 
 export default App
