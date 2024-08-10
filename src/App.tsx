@@ -6,6 +6,7 @@ import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Konva from 'konva';
+import { SketchPicker } from 'react-color'
 
 
 const App = () => {
@@ -13,16 +14,18 @@ const App = () => {
   const ref = useRef<Konva.Stage>(null)
 
   const [leftStationName, setLeftStationName] = useState('品川');
+  const [leftStationNameFurigana, setLeftStationNameFurigana] = useState('しながわ');
+  const [leftStationNameEnglish, setLeftStationNameEnglish] = useState('Shinagawa');
   const [stationName, setStationName] = useState('高輪ゲートウェイ');
+  const [stationNameFurigana, setStationNameFurigana] = useState('たかなわげーとうぇい');
+  const [stationNameEnglish, setStationNameEnglish] = useState('Takanawa Gateway');
   const [rightStationName, setRightStationName] = useState('田町');
+  const [rightStationNameFurigana, setRightStationNameFurigana] = useState('たまち');
+  const [rightStationNameEnglish, setRightStationNameEnglish] = useState('Tamachi');
   const [ratio, setRatio] = useState(5);
   const [direction, setDirection] = useState<'left' | 'right' | 'both'>('both')
-
-  //Color definitions
-  const color = {
-    main: '#36ab33',
-    line: '#89ff12',
-  }
+  const [mainColor, setMainColor] = useState('#36ab33')
+  const [lineColor, setLineColor] = useState('#89ff12')
 
   const handleSave = () => {
     console.dir(typeof (ref.current))
@@ -45,22 +48,32 @@ const App = () => {
       <Header />
       <JrEastSign
         stationName={stationName}
-        stationNameFurigana='たかなわげーとうぇい'
-        stationNameEnglish='Takanawa Gateway'
+        stationNameFurigana={stationNameFurigana}
+        stationNameEnglish={stationNameEnglish}
         leftStationName={leftStationName}
-        leftStationNameEnglish='Shinagawa'
+        leftStationNameEnglish={leftStationNameEnglish}
         rightStationName={rightStationName}
         rightStationNameEnglish='Tamachi'
-        lineColor={color.line}
-        baseColor={color.main}
+        lineColor={lineColor}
+        baseColor={mainColor}
         ratio={ratio}
         direction={direction}
         ref={ref}
       />
+      ***REMOVED***
+
       <Button variant="contained" onClick={() => handleSave()}>save</Button>
-      <TextField id="leftStationName" label="駅名" variant="outlined" value={leftStationName} onChange={(e) => { setLeftStationName(e.target.value) }} />
+      <TextField id="leftStationName" label="左駅名" variant="outlined" value={leftStationName} onChange={(e) => { setLeftStationName(e.target.value) }} />
+      <TextField id="leftStationNameFurigana" label="左駅名（よみがな）" variant="outlined" value={leftStationNameFurigana} onChange={(e) => { setLeftStationNameFurigana(e.target.value) }} />
+      <TextField id="leftStationNameEnglish" label="左駅名（英語）" variant="outlined" value={leftStationNameEnglish} onChange={(e) => { setLeftStationNameEnglish(e.target.value) }} />
       <TextField id="stationName" label="駅名" variant="outlined" value={stationName} onChange={(e) => { setStationName(e.target.value) }} />
-      <TextField id="rightStationName" label="駅名" variant="outlined" value={rightStationName} onChange={(e) => { setRightStationName(e.target.value) }} />
+      <TextField id="stationNameFurigana" label="駅名（ふりがな）" variant="outlined" value={stationNameFurigana} onChange={(e) => { setStationNameFurigana(e.target.value) }} />
+      <TextField id="stationNameEnglish" label="駅名（英語）" variant="outlined" value={stationNameEnglish} onChange={(e) => { setStationNameEnglish(e.target.value) }} />
+      <TextField id="rightStationName" label="右駅名" variant="outlined" value={rightStationName} onChange={(e) => { setRightStationName(e.target.value) }} />
+      <TextField id="rightStationNameFurigana" label="右駅名（ふりがな）" variant="outlined" value={rightStationNameFurigana} onChange={(e) => { setRightStationNameFurigana(e.target.value) }} />
+      <TextField id="rightStationNameEnglish" label="右駅名（英語）" variant="outlined" value={rightStationNameEnglish} onChange={(e) => { setRightStationNameEnglish(e.target.value) }} />
+      <SketchPicker color={mainColor} onChange={(color) => { setMainColor(color.hex) }} />
+      <SketchPicker color={lineColor} onChange={(color) => { setLineColor(color.hex) }} />
       <Button variant="contained" onClick={() => {
         if (ratio == 7) {
           setRatio(3)
