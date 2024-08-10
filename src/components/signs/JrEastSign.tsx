@@ -5,7 +5,10 @@ import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import styled from 'styled-components'
 import Konva from "konva"
 
-const JrEastSign: React.FC<StationProps> = (props) => {
+const JrEastSign: React.FC<StationProps> = forwardRef((props, ref: any) => {
+
+  //const stageRef = useRef<Konva.Stage>(null)
+
   const { stationName, stationNameEnglish, stationNameFurigana, stationNameChinese, stationNameKorean, stationNote, leftStationName, leftStationNameEnglish, rightStationName, rightStationNameEnglish, stationNumber, baseColor, lineColor, direction, ratio } = props
 
   const height = 130;
@@ -13,22 +16,6 @@ const JrEastSign: React.FC<StationProps> = (props) => {
   const startingPoint = 40;
   const lineHeight = 24
   const linePosY = 70
-  const stageRef = useRef<Konva.Stage>(null)
-
-  const handleSave = () => {
-    if (stageRef.current) {
-      const uri = stageRef.current.toDataURL();
-      // Create a link element
-      const link = document.createElement('a');
-      link.download = 'canvas.png';
-      link.href = uri;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } else {
-      console.error('handleSave failed. This is completely unexpected behavior as the canvas is always rendered.')
-    }
-  };
 
   useEffect(() => {
     setWidth(height * ratio);
@@ -47,7 +34,7 @@ const JrEastSign: React.FC<StationProps> = (props) => {
 
   return (
     <SignWrapper>
-      <Stage width={width} height={height} ref={stageRef}>
+      <Stage width={width} height={height} ref={ref}>
         <Layer>
           <Rect fill='white' x={0} y={0} width={width} height={height} />
           <Rect fill={baseColor} x={startingPoint} y={linePosY} width={width - 80} height={lineHeight} />
@@ -82,10 +69,10 @@ const JrEastSign: React.FC<StationProps> = (props) => {
           <Text text={stationNameEnglish} width={width} x={0} y={100} fontSize={14} fontStyle='600' fontFamily='Helvetica' fill='black' align='center' />
         </Layer>
       </Stage>
-      <button onClick={handleSave}>Save</button>
+      <button onClick={/*handleSave*/() => { }}>Save</button>
     </SignWrapper>
   )
-}
+})
 
 const SignWrapper = styled.div`
   width: 100%;

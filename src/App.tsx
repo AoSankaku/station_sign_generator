@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { Button, TextField, IconButton } from '@mui/material'
 import Header from './components/Header'
 import JrEastSign from './components/signs/JrEastSign'
@@ -8,6 +8,8 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 const App = () => {
+
+  const ref = useRef(null)
 
   const [leftStationName, setLeftStationName] = useState('品川');
   const [stationName, setStationName] = useState('高輪ゲートウェイ');
@@ -20,6 +22,22 @@ const App = () => {
     main: '#36ab33',
     line: '#89ff12',
   }
+
+  const handleSave = () => {
+    console.dir(ref)
+    if (ref.current) {
+      const uri = ref.current.toDataURL();
+      // Create a link element
+      const link = document.createElement('a');
+      link.download = `${stationName}.png`;
+      link.href = uri;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } else {
+      console.error('handleSave failed. This is completely unexpected behavior as the canvas is always rendered.')
+    }
+  };
 
   return (
     <>
@@ -36,6 +54,7 @@ const App = () => {
         baseColor={color.main}
         ratio={ratio}
         direction={direction}
+        ref={ref}
       />
       <TextField id="leftStationName" label="駅名" variant="outlined" value={leftStationName} onChange={(e) => { setLeftStationName(e.target.value) }} />
       <TextField id="stationName" label="駅名" variant="outlined" value={stationName} onChange={(e) => { setStationName(e.target.value) }} />
@@ -58,6 +77,10 @@ const App = () => {
           <ArrowForwardIcon fontSize="inherit" />
         </IconButton>
       </>
+      <Button variant="contained" onClick={() => {
+        handleSave()
+      }}>save</Button>
+      <></>
     </>
   )
 }
