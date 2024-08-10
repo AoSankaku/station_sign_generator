@@ -79,7 +79,6 @@ const App = () => {
         direction={direction}
         ref={ref}
       />
-      ***REMOVED***
 
       <Button variant="contained" onClick={() => handleSave()}>save</Button>
       <TextField id="leftStationName" label="左駅名" variant="outlined" value={leftStationName} onChange={(e) => { setLeftStationName(e.target.value) }} />
