@@ -56,6 +56,7 @@ const App = () => {
         direction={direction}
         ref={ref}
       />
+      <Button variant="contained" onClick={() => handleSave()}>save</Button>
       <TextField id="leftStationName" label="駅名" variant="outlined" value={leftStationName} onChange={(e) => { setLeftStationName(e.target.value) }} />
       <TextField id="stationName" label="駅名" variant="outlined" value={stationName} onChange={(e) => { setStationName(e.target.value) }} />
       <TextField id="rightStationName" label="駅名" variant="outlined" value={rightStationName} onChange={(e) => { setRightStationName(e.target.value) }} />
@@ -77,9 +78,6 @@ const App = () => {
           <ArrowForwardIcon fontSize="inherit" />
         </IconButton>
       </>
-      <Button variant="contained" onClick={() => {
-        handleSave()
-      }}>save</Button>
       <></>
     </>
   )

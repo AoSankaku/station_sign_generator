@@ -69,7 +69,6 @@ const JrEastSign: React.FC<StationProps> = forwardRef((props, ref: any) => {
           <Text text={stationNameEnglish} width={width} x={0} y={100} fontSize={14} fontStyle='600' fontFamily='Helvetica' fill='black' align='center' />
         </Layer>
       </Stage>
-      <button onClick={/*handleSave*/() => { }}>Save</button>
     </SignWrapper>
   )
 })
