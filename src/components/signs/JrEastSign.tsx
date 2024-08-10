@@ -10,7 +10,14 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   //const stageRef = useRef<Konva.Stage>(null)
 
   const { stationName, stationNameEnglish, stationNameFurigana, stationNameChinese, stationNameKorean, stationNote, leftStationName, leftStationNameEnglish, rightStationName, rightStationNameEnglish, stationNumber, baseColor, lineColor, direction, ratio } = props
-
+  const getSpacedStationName = () => {
+    const str = stationName
+    switch (str.length) {
+      case 2: return str.split('').join('　')
+      case 3: return str.split('').join(' ')
+      default: return str
+    }
+  }
   const height = 130;
   const [width, setWidth] = useState(0);
   const startingPoint = 40;
@@ -24,12 +31,14 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const autoSpace = (str: string) => {
     return str.length <= 2 ? str.split('').join(' ') : str;
   }
-  const autoSpaceMain = (str: string) => {
-    switch (str.length) {
-      case 2: return str.split('').join('　')
-      case 3: return str.split('').join(' ')
-      default: return str
-    }
+
+  const getStationNameWidth = () => {
+    const tempText = new Konva.Text({
+      text: getSpacedStationName(),
+      fontSize: 35,
+      fontFamily: 'Noto Sans Japanese',
+    });
+    return tempText.getWidth()
   }
 
   return (
@@ -66,8 +75,8 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           }
           <Rect stroke='grey' strokeWidth={8} x={0} y={0} width={width} height={height} />
           <Rect fill={lineColor} x={width / 2 - 12} y={70} width={24} height={24} />
-          <Text text={autoSpaceMain(stationName)} width={width} x={0} y={12} fontSize={35} fontStyle='600' fontFamily='Noto Sans Japanese' fill='black' align='center' />
-          <Rect stroke={lineColor} x={0} y={0} width={20} height={30} cornerRadius={6} />
+          <Text text={getSpacedStationName()} width={width} x={0} y={12} fontSize={35} fontStyle='600' fontFamily='Noto Sans Japanese' fill='black' align='center' />
+          <Rect stroke={lineColor} strokeWidth={4} x={-365 + width - getStationNameWidth() / 2} y={15} width={28} height={32} cornerRadius={6} />
           <Text text={stationNameFurigana} width={width} x={0} y={52} fontSize={13} fontStyle='600' fontFamily='Noto Sans Japanese' fill='black' align='center' />
           <Text text={stationNameEnglish} width={width} x={0} y={100} fontSize={14} fontStyle='600' fontFamily='Helvetica' fill='black' align='center' />
         </Layer>
