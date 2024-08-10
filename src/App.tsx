@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button, TextField, IconButton } from '@mui/material'
 import Header from './components/Header'
 import JrEastSign from './components/signs/JrEastSign'
@@ -26,6 +26,25 @@ const App = () => {
   const [direction, setDirection] = useState<'left' | 'right' | 'both'>('both')
   const [mainColor, setMainColor] = useState('#36ab33')
   const [lineColor, setLineColor] = useState('#89ff12')
+  const [outputJson, setOutputJson] = useState({})
+
+  useEffect(() => {
+    setOutputJson({
+      leftStationName: leftStationName,
+      leftStationNameFurigana: leftStationNameFurigana,
+      leftStationNameEnglish: leftStationNameEnglish,
+      stationName: stationName,
+      stationNameFurigana: stationNameFurigana,
+      stationNameEnglish: stationNameEnglish,
+      rightStationName: rightStationName,
+      rightStationNameFurigana: rightStationNameFurigana,
+      rightStationNameEnglish: rightStationNameEnglish,
+      ratio: ratio,
+      direction: direction,
+      mainColor: mainColor,
+      lineColor: lineColor,
+    })
+  }, [leftStationName, leftStationNameFurigana, leftStationNameEnglish])
 
   const handleSave = () => {
     console.dir(typeof (ref.current))
@@ -92,7 +111,7 @@ const App = () => {
           <ArrowForwardIcon fontSize="inherit" />
         </IconButton>
       </>
-      <></>
+      <TextField fullWidth multiline variant="outlined" value={JSON.stringify(outputJson, null, 2)} />
     </>
   )
 }
