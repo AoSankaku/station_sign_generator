@@ -5,7 +5,7 @@ import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import styled from 'styled-components'
 import Konva from "konva"
 
-const JrEastSign: React.FC<StationProps> = forwardRef((props, ref: any) => {
+const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<Konva.Stage>) => {
 
   //const stageRef = useRef<Konva.Stage>(null)
 

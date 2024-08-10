@@ -1,3 +1,6 @@
+import { RefObject } from "react";
+import Konva from "konva";
+
 interface StationProps {
   stationName: string;
   stationNameFurigana: string;
@@ -14,6 +17,7 @@ interface StationProps {
   ratio: number;
   stationNumber?: string;
   direction?: 'left' | 'right' | 'both';
+  ref: RefObject<Konva.Stage>;
 }
 
 export default StationProps

@@ -5,11 +5,12 @@ import JrEastSign from './components/signs/JrEastSign'
 import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Konva from 'konva';
 
 
 const App = () => {
 
-  const ref = useRef(null)
+  const ref = useRef<Konva.Stage>(null)
 
   const [leftStationName, setLeftStationName] = useState('品川');
   const [stationName, setStationName] = useState('高輪ゲートウェイ');
@@ -24,8 +25,8 @@ const App = () => {
   }
 
   const handleSave = () => {
-    console.dir(ref)
-    if (ref.current) {
+    console.dir(typeof (ref.current))
+    if (ref.current && ref.current) {
       const uri = ref.current.toDataURL();
       // Create a link element
       const link = document.createElement('a');
