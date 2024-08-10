@@ -9,19 +9,21 @@ interface StationProps {
   stationNameEnglish: string;
   stationNameKorean?: string;
   stationNameChinese?: string;
+  stationNumber?: string;
   //right
   rightStationName: string;
   rightStationNameEnglish: string;
   rightStationNameFurigana?: string;
+  rightStationNumber?: string;
   //left
   leftStationName: string;
   leftStationNameEnglish: string;
   leftStationNameFurigana?: string;
+  leftStationNumber?: string;
   //misc
   lineColor: string;
   baseColor: string;
   ratio: number;
-  stationNumber?: string;
   direction?: 'left' | 'right' | 'both';
   ref: RefObject<Konva.Stage>;
 }
