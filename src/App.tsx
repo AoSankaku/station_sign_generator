@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { Button, TextField, IconButton } from '@mui/material'
 import Header from './components/Header'
 import JrEastSign from './components/signs/JrEastSign'
@@ -101,7 +101,7 @@ const App = () => {
       <SketchPicker color={currentData.baseColor} onChange={(color) => { updateCurrentData("baseColor", color.hex) }} />
       <SketchPicker color={currentData.lineColor} onChange={(color) => { updateCurrentData("lineColor", color.hex) }} />
       <Button variant="contained" onClick={() => {
-        if (ratio == 7) {
+        if (currentData.ratio == 7) {
           updateCurrentData("ratio", 3)
         } else {
           updateCurrentData("ratio", currentData.ratio + 2)
