@@ -19,15 +19,17 @@ const App = () => {
   const [stationName, setStationName] = useState('高輪ゲートウェイ');
   const [stationNameFurigana, setStationNameFurigana] = useState('たかなわげーとうぇい');
   const [stationNameEnglish, setStationNameEnglish] = useState('Takanawa Gateway');
-  const [stationNumber, setStationNumber] = useState('JY26')
+  const [stationNameChinese, setStationNameChinese] = useState('高轮Gateway');
+  const [stationNameKorean, setStationNameKorean] = useState('다카나와 게이트웨이');
+  const [stationNumber, setStationNumber] = useState('JY26');
   const [rightStationName, setRightStationName] = useState('田町');
   const [rightStationNameFurigana, setRightStationNameFurigana] = useState('たまち');
   const [rightStationNameEnglish, setRightStationNameEnglish] = useState('Tamachi');
   const [ratio, setRatio] = useState(5);
-  const [direction, setDirection] = useState<'left' | 'right' | 'both'>('both')
-  const [mainColor, setMainColor] = useState('#36ab33')
-  const [lineColor, setLineColor] = useState('#89ff12')
-  const [outputJson, setOutputJson] = useState({})
+  const [direction, setDirection] = useState<'left' | 'right' | 'both'>('both');
+  const [mainColor, setMainColor] = useState('#36ab33');
+  const [lineColor, setLineColor] = useState('#89ff12');
+  const [outputJson, setOutputJson] = useState({});
 
   useEffect(() => {
     setOutputJson({
@@ -37,6 +39,8 @@ const App = () => {
       stationName: stationName,
       stationNameFurigana: stationNameFurigana,
       stationNameEnglish: stationNameEnglish,
+      stationNameChinese: stationNameChinese,
+      stationNameKorean: stationNameKorean,
       stationNumber: stationNumber,
       rightStationName: rightStationName,
       rightStationNameFurigana: rightStationNameFurigana,
@@ -71,11 +75,13 @@ const App = () => {
         stationName={stationName}
         stationNameFurigana={stationNameFurigana}
         stationNameEnglish={stationNameEnglish}
+        stationNameChinese={stationNameChinese}
+        stationNameKorean={stationNameKorean}
         stationNumber={stationNumber}
         leftStationName={leftStationName}
         leftStationNameEnglish={leftStationNameEnglish}
         rightStationName={rightStationName}
-        rightStationNameEnglish='Tamachi'
+        rightStationNameEnglish={rightStationNameEnglish}
         lineColor={lineColor}
         baseColor={mainColor}
         ratio={ratio}
@@ -90,6 +96,8 @@ const App = () => {
       <TextField id="stationName" label="駅名" variant="outlined" value={stationName} onChange={(e) => { setStationName(e.target.value) }} />
       <TextField id="stationNameFurigana" label="駅名（ふりがな）" variant="outlined" value={stationNameFurigana} onChange={(e) => { setStationNameFurigana(e.target.value) }} />
       <TextField id="stationNameEnglish" label="駅名（英語）" variant="outlined" value={stationNameEnglish} onChange={(e) => { setStationNameEnglish(e.target.value) }} />
+      <TextField id="stationNameChinese" label="駅名（繁体中文）" variant="outlined" value={stationNameChinese} onChange={(e) => { setStationNameChinese(e.target.value) }} />
+      <TextField id="stationNameKorean" label="駅名（한국어）" variant="outlined" value={stationNameKorean} onChange={(e) => { setStationNameKorean(e.target.value) }} />
       <TextField id="stationNumber" label="駅ナンバリング" variant="outlined" value={stationNumber} onChange={(e) => { setStationNumber(e.target.value) }} />
       <TextField id="rightStationName" label="右駅名" variant="outlined" value={rightStationName} onChange={(e) => { setRightStationName(e.target.value) }} />
       <TextField id="rightStationNameFurigana" label="右駅名（ふりがな）" variant="outlined" value={rightStationNameFurigana} onChange={(e) => { setRightStationNameFurigana(e.target.value) }} />
