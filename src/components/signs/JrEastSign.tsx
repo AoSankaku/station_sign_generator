@@ -88,14 +88,14 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           <Text text={getSpacedStationName()} width={width} x={0} y={14} fontSize={32} fontStyle='600' fontFamily='Noto Sans Japanese' fill='black' align='center' />
           {processedStationNumber.prefix &&
             <>
-              <Rect stroke={lineColor} strokeWidth={4} x={-360 + width - getStationNameWidth() / 2} y={15} width={30} height={33} cornerRadius={6} />
-              <Text text={processedStationNumber.prefix} fill='black' x={-360 + width - getStationNameWidth() / 2} fontSize={10} fontFamily='Helvetica Neue' y={20} width={30} height={30} align="center" />
-              <Text text={processedStationNumber.number} fill='black' x={-360 + width - getStationNameWidth() / 2} fontSize={16} fontFamily='Helvetica Neue' fontStyle="500" y={29} width={30} height={32} align="center" />
+              <Rect stroke={lineColor} strokeWidth={4} x={-30 + (width - getStationNameWidth()) / 2} y={15} width={30} height={33} cornerRadius={6} />
+              <Text text={processedStationNumber.prefix} fill='black' x={-30 + (width - getStationNameWidth()) / 2} fontSize={10} fontFamily='Helvetica Neue' y={20} width={30} height={30} align="center" />
+              <Text text={processedStationNumber.number} fill='black' x={-30 + (width - getStationNameWidth()) / 2} fontSize={16} fontFamily='Helvetica Neue' fontStyle="500" y={29} width={30} height={32} align="center" />
             </>
           }
           <Text text={stationNameFurigana} width={width} x={0} y={52} fontSize={12} fontStyle='600' fontFamily='Noto Sans Japanese' fill='black' align='center' />
-          <Text text={stationNameChinese} x={-330 + width + getStationNameWidth() / 2} y={18} fontSize={10} fontStyle='400' fontFamily='Noto Sans' fill='black' align='center' />
-          <Text text={stationNameKorean} x={-330 + width + getStationNameWidth() / 2} y={34} fontSize={10} fontStyle='400' fontFamily='Noto Sans' fill='black' align='center' />
+          <Text text={stationNameChinese} x={-5 + (width + getStationNameWidth()) / 2} y={18} fontSize={10} fontStyle='400' fontFamily='Noto Sans' fill='black' align='center' />
+          <Text text={stationNameKorean} x={-5 + (width + getStationNameWidth()) / 2} y={34} fontSize={10} fontStyle='400' fontFamily='Noto Sans' fill='black' align='center' />
           <Text text={stationNameEnglish} width={width} x={0} y={100} fontSize={14} fontStyle='600' fontFamily='Helvetica Neue' fill='black' align='center' />
         </Layer>
       </Stage>
