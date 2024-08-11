@@ -25,7 +25,7 @@ interface StationProps {
   baseColor: string;
   ratio: number;
   direction?: 'left' | 'right' | 'both';
-  ref: RefObject<Konva.Stage>;
+  ref?: RefObject<Konva.Stage>;
 }
 
 export default StationProps
