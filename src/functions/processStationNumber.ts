@@ -1,6 +1,7 @@
 const processStationNumber = (stationNumber: string): processedStationNumber => {
 
-  const match = stationNumber.replace(/\s+/g, "").match(/^([A-Za-z]+)(\d+)$/);
+  const stationNumberWithoutSpace = stationNumber.replace(/\s+/g, "")
+  const match = stationNumberWithoutSpace.match(/^([A-Za-z]+)(\d+)$/);
   if (match) {
     return {
       prefix: match[1],
@@ -8,7 +9,7 @@ const processStationNumber = (stationNumber: string): processedStationNumber => 
     };
   } else {
     console.error("Invalid input format for processStationNumber()")
-    return {}
+    return { prefix: stationNumberWithoutSpace }
   }
 
 }
