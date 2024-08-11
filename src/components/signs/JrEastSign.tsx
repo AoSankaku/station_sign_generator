@@ -4,6 +4,7 @@ import StationProps from "./StationProps"
 import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import styled from 'styled-components'
 import Konva from "konva"
+import processStationNumber, { processedStationNumber } from "../../functions/processStationNumber"
 
 const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<Konva.Stage>) => {
 
@@ -23,10 +24,19 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const startingPoint = 40;
   const lineHeight = 24
   const linePosY = 70
+  const [processedStationNumber, setProcessedStationNumber] = useState<processedStationNumber>({});
 
   useEffect(() => {
     setWidth(height * ratio);
   }, [ratio])
+
+  useEffect(() => {
+    if (stationNumber) {
+      setProcessedStationNumber(processStationNumber(stationNumber))
+    } else {
+      setProcessedStationNumber({})
+    }
+  }, [stationNumber])
 
   const autoSpace = (str: string) => {
     return str.length <= 2 ? str.split('').join(' ') : str;
@@ -54,7 +64,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
             <>
               <Rect fill={baseColor} x={startingPoint} y={linePosY} width={width} height={lineHeight} />
               <Text text={autoSpace(rightStationName)} width={width} x={-30} y={74} fontSize={15} fontStyle='500' fontFamily='Noto Sans Japanese' fill='white' align='right' />
-              <Text text={autoSpace(rightStationNameEnglish)} width={width} x={-30} y={100} fontSize={12} fontStyle='500' fontFamily='Helvetica' fill='black' align='right' />
+              <Text text={autoSpace(rightStationNameEnglish)} width={width} x={-30} y={100} fontSize={12} fontStyle='500' fontFamily='Helvetica Neue' fill='black' align='right' />
             </>
           }
           {
@@ -62,7 +72,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
             <>
               <Rect fill={baseColor} x={0} y={linePosY} width={width - 80} height={lineHeight} />
               <Text text={autoSpace(leftStationName)} width={width} x={30} y={74} fontSize={15} fontStyle='500' fontFamily='Noto Sans Japanese' fill='white' align='left' />
-              <Text text={autoSpace(rightStationNameEnglish)} width={width} x={30} y={100} fontSize={12} fontStyle='500' fontFamily='Helvetica' fill='black' align='left' />
+              <Text text={autoSpace(rightStationNameEnglish)} width={width} x={30} y={100} fontSize={12} fontStyle='500' fontFamily='Helvetica Neue' fill='black' align='left' />
             </>
           }
           {
@@ -76,9 +86,15 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           <Rect stroke='grey' strokeWidth={8} x={0} y={0} width={width} height={height} />
           <Rect fill={lineColor} x={width / 2 - 12} y={70} width={24} height={24} />
           <Text text={getSpacedStationName()} width={width} x={0} y={12} fontSize={35} fontStyle='600' fontFamily='Noto Sans Japanese' fill='black' align='center' />
+          {processedStationNumber.prefix &&
+            <>
           <Rect stroke={lineColor} strokeWidth={4} x={-365 + width - getStationNameWidth() / 2} y={15} width={28} height={32} cornerRadius={6} />
+              <Text text={processedStationNumber.prefix} fill='black' x={-365 + width - getStationNameWidth() / 2} fontSize={10} fontFamily='Helvetica Neue' y={20} width={28} height={32} align="center" />
+              <Text text={processedStationNumber.number} fill='black' x={-365 + width - getStationNameWidth() / 2} fontSize={16} fontFamily='Helvetica Neue' fontStyle="500" y={29} width={28} height={32} align="center" />
+            </>
+          }
           <Text text={stationNameFurigana} width={width} x={0} y={52} fontSize={13} fontStyle='600' fontFamily='Noto Sans Japanese' fill='black' align='center' />
-          <Text text={stationNameEnglish} width={width} x={0} y={100} fontSize={14} fontStyle='600' fontFamily='Helvetica' fill='black' align='center' />
+          <Text text={stationNameEnglish} width={width} x={0} y={100} fontSize={14} fontStyle='600' fontFamily='Helvetica Neue' fill='black' align='center' />
         </Layer>
       </Stage>
     </SignWrapper>

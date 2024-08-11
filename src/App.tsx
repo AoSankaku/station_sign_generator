@@ -19,6 +19,7 @@ const App = () => {
   const [stationName, setStationName] = useState('高輪ゲートウェイ');
   const [stationNameFurigana, setStationNameFurigana] = useState('たかなわげーとうぇい');
   const [stationNameEnglish, setStationNameEnglish] = useState('Takanawa Gateway');
+  const [stationNumber, setStationNumber] = useState('JY26')
   const [rightStationName, setRightStationName] = useState('田町');
   const [rightStationNameFurigana, setRightStationNameFurigana] = useState('たまち');
   const [rightStationNameEnglish, setRightStationNameEnglish] = useState('Tamachi');
@@ -36,6 +37,7 @@ const App = () => {
       stationName: stationName,
       stationNameFurigana: stationNameFurigana,
       stationNameEnglish: stationNameEnglish,
+      stationNumber: stationNumber,
       rightStationName: rightStationName,
       rightStationNameFurigana: rightStationNameFurigana,
       rightStationNameEnglish: rightStationNameEnglish,
@@ -69,6 +71,7 @@ const App = () => {
         stationName={stationName}
         stationNameFurigana={stationNameFurigana}
         stationNameEnglish={stationNameEnglish}
+        stationNumber={stationNumber}
         leftStationName={leftStationName}
         leftStationNameEnglish={leftStationNameEnglish}
         rightStationName={rightStationName}
@@ -87,6 +90,7 @@ const App = () => {
       <TextField id="stationName" label="駅名" variant="outlined" value={stationName} onChange={(e) => { setStationName(e.target.value) }} />
       <TextField id="stationNameFurigana" label="駅名（ふりがな）" variant="outlined" value={stationNameFurigana} onChange={(e) => { setStationNameFurigana(e.target.value) }} />
       <TextField id="stationNameEnglish" label="駅名（英語）" variant="outlined" value={stationNameEnglish} onChange={(e) => { setStationNameEnglish(e.target.value) }} />
+      <TextField id="stationNumber" label="駅ナンバリング" variant="outlined" value={stationNumber} onChange={(e) => { setStationNumber(e.target.value) }} />
       <TextField id="rightStationName" label="右駅名" variant="outlined" value={rightStationName} onChange={(e) => { setRightStationName(e.target.value) }} />
       <TextField id="rightStationNameFurigana" label="右駅名（ふりがな）" variant="outlined" value={rightStationNameFurigana} onChange={(e) => { setRightStationNameFurigana(e.target.value) }} />
       <TextField id="rightStationNameEnglish" label="右駅名（英語）" variant="outlined" value={rightStationNameEnglish} onChange={(e) => { setRightStationNameEnglish(e.target.value) }} />
