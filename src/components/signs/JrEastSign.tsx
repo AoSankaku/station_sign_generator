@@ -10,6 +10,8 @@ import '../../assets/css/fonts.css'
 
 const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<Konva.Stage>) => {
 
+  // font importer memo
+  // const font = new FontFace('CustomFont', 'url(/path/to/font.woff2)');
   //const stageRef = useRef<Konva.Stage>(null)
 
   const { stationName, stationNameEnglish, stationNameFurigana, stationNameChinese, stationNameKorean, stationNote, leftStationName, leftStationNameEnglish, rightStationName, rightStationNameEnglish, stationNumber, stationThreeLetterCode, baseColor, lineColor, direction, ratio } = props
