@@ -10,6 +10,7 @@ interface StationProps {
   stationNameKorean?: string;
   stationNameChinese?: string;
   stationNumber?: string;
+  stationThreeLetterCode?: string;
   //right
   rightStationName: string;
   rightStationNameEnglish: string;
