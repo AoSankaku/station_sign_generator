@@ -24,6 +24,7 @@ const App = () => {
     stationNameChinese: '高轮Gateway',
     stationNameKorean: '다카나와 게이트웨이',
     stationNumber: 'JY26',
+    stationThreeLetterCode: 'TGW',
     rightStationName: '田町',
     rightStationNameFurigana: 'たまち',
     rightStationNameEnglish: 'Tamachi',
@@ -74,6 +75,7 @@ const App = () => {
         stationNameChinese={currentData.stationNameChinese}
         stationNameKorean={currentData.stationNameKorean}
         stationNumber={currentData.stationNumber}
+        stationThreeLetterCode={currentData.stationThreeLetterCode}
         leftStationName={currentData.leftStationName}
         leftStationNameEnglish={currentData.leftStationNameEnglish}
         rightStationName={currentData.rightStationName}
@@ -95,6 +97,7 @@ const App = () => {
       <TextField id="stationNameChinese" label="駅名（繁体中文）" variant="outlined" value={currentData.stationNameChinese} onChange={(e) => { updateCurrentData("stationNameChinese", e.target.value) }} />
       <TextField id="stationNameKorean" label="駅名（한국어）" variant="outlined" value={currentData.stationNameKorean} onChange={(e) => { updateCurrentData("stationNameKorean", e.target.value) }} />
       <TextField id="stationNumber" label="駅ナンバリング" variant="outlined" value={currentData.stationNumber} onChange={(e) => { updateCurrentData("stationNumber", e.target.value) }} />
+      <TextField id="stationThreeLetterCode" label="スリーレターコード" variant="outlined" value={currentData.stationThreeLetterCode} onChange={(e) => { updateCurrentData("stationThreeLetterCode", e.target.value) }} />
       <TextField id="rightStationName" label="右駅名" variant="outlined" value={currentData.rightStationName} onChange={(e) => { updateCurrentData("rightStationName", e.target.value) }} />
       <TextField id="rightStationNameFurigana" label="右駅名（ふりがな）" variant="outlined" value={currentData.rightStationNameFurigana} onChange={(e) => { updateCurrentData("rightStationNameFurigana", e.target.value) }} />
       <TextField id="rightStationNameEnglish" label="右駅名（英語）" variant="outlined" value={currentData.rightStationNameEnglish} onChange={(e) => { updateCurrentData("rightStationNameEnglish", e.target.value) }} />

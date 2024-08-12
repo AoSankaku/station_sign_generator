@@ -104,11 +104,24 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           <Rect fill={lineColor} x={width / 2 - 12} y={70} width={24} height={24} />
           <Text text={getSpacedStationName()} width={width} x={0} y={16} fontSize={32} fontFamily='NotoSansJP' fontStyle="900" fill='black' align='center' />
           {processedStationNumber.prefix &&
-            <>
-              <Rect stroke={lineColor} strokeWidth={4} x={-45 + (width - getStationNameWidth()) / 2} y={16} width={30} height={33} cornerRadius={6} />
+            (stationThreeLetterCode ?
+              (<>
+                <Rect stroke={lineColor} strokeWidth={4} x={-45 + (width - getStationNameWidth()) / 2} y={29} width={30} height={30} cornerRadius={2} />
+                <Rect stroke='black' strokeWidth={4} x={-49 + (width - getStationNameWidth()) / 2} y={25} width={38} height={37} cornerRadius={6} />
+                <Rect stroke='black' strokeWidth={4} x={-49 + (width - getStationNameWidth()) / 2} y={22} width={38} height={40} cornerRadius={6} />
+                <Rect stroke='black' strokeWidth={4} x={-49 + (width - getStationNameWidth()) / 2} y={20} width={38} height={43} cornerRadius={6} />
+                <Rect stroke='black' strokeWidth={4} x={-49 + (width - getStationNameWidth()) / 2} y={18} width={38} height={45} cornerRadius={6} />
+                <Text text={stationThreeLetterCode} fill='white' x={-45 + (width - getStationNameWidth()) / 2} fontSize={12} fontFamily={'HindSemiBold'} fontStyle="800" y={18} width={30} height={30} align="center" />
+                <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={33} width={30} height={30} align="center" />
+                <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={43} width={30} height={32} align="center" />
+              </>
+              )
+              : (<>
+                <Rect stroke={lineColor} strokeWidth={4} x={-45 + (width - getStationNameWidth()) / 2} y={18} width={30} height={30} cornerRadius={2} />
               <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={22} width={30} height={30} align="center" />
               <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={32} width={30} height={32} align="center" />
-            </>
+              </>)
+            )
           }
           <Text text={stationNameFurigana} width={width} x={0} y={52} fontSize={12} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
           <Text text={stationNameChinese} x={10 + (width + getStationNameWidth()) / 2} y={18} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
