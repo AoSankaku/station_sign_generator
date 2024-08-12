@@ -28,7 +28,7 @@ const App = () => {
     rightStationNameFurigana: 'たまち',
     rightStationNameEnglish: 'Tamachi',
     ratio: 5,
-    direction: 'both',
+    direction: 'left',
     baseColor: '#36ab33',
     lineColor: '#89ff12',
   });
