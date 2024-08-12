@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'NotoSansJP';
+  src: url('../fonts/NotoSansJP-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoSansTC';
+  src: url('../fonts/NotoSansTC-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'NotoSansKR';
+  src: url('../fonts/NotoSansKR-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'OverusedGrotesk';
+  src: url('../fonts/OverusedGrotesk-VF.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'HindSemiBold';
+  src: url('../fonts/Hind-SemiBold.ttf') format('truetype');
+}
