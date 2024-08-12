@@ -29,7 +29,8 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const lineHeight = 24
   const linePosY = 70
   const [processedStationNumber, setProcessedStationNumber] = useState<processedStationNumber>({});
-  const [isFontLoaded, setIsFontLoaded] = useState(false)
+  // const [isFontLoaded, setIsFontLoaded] = useState(false)
+  const [stageKey, setStageKey] = useState(0)
 
   useEffect(() => {
     setWidth(height * ratio);
@@ -48,7 +49,8 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
       const fontFaces = [...fontFaceSet]
       console.dir(fontFaces)
       console.log('All fonts have been loaded.')
-      setIsFontLoaded(true)
+      // setIsFontLoaded(true)
+      setStageKey(prevKey => prevKey + 1)
     })
   }, [])
 
@@ -68,7 +70,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
 
   return (
     <SignWrapper>
-      <Stage width={width} height={height} ref={ref}>
+      <Stage width={width} height={height} ref={ref} key={stageKey}>
         <Layer>
           <Rect fill='white' x={0} y={0} width={width} height={height} />
           <Rect fill={baseColor} x={startingPoint} y={linePosY} width={width - 80} height={lineHeight} />
