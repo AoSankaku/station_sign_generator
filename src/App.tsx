@@ -18,6 +18,7 @@ const App = () => {
     leftStationName: '品川',
     leftStationNameFurigana: 'しながわ',
     leftStationNameEnglish: 'Shinagawa',
+    leftStationNumber: 'JY25',
     stationName: '高輪ゲートウェイ',
     stationNameFurigana: 'たかなわげーとうぇい',
     stationNameEnglish: 'Takanawa Gateway',
@@ -28,6 +29,7 @@ const App = () => {
     rightStationName: '田町',
     rightStationNameFurigana: 'たまち',
     rightStationNameEnglish: 'Tamachi',
+    rightStationNumber: 'JY27',
     ratio: 5,
     direction: 'left',
     baseColor: '#36ab33',
@@ -78,8 +80,10 @@ const App = () => {
         stationThreeLetterCode={currentData.stationThreeLetterCode}
         leftStationName={currentData.leftStationName}
         leftStationNameEnglish={currentData.leftStationNameEnglish}
+        leftStationNumber={currentData.leftStationNumber}
         rightStationName={currentData.rightStationName}
         rightStationNameEnglish={currentData.rightStationNameEnglish}
+        rightStationNumber={currentData.rightStationNumber}
         lineColor={currentData.lineColor}
         baseColor={currentData.baseColor}
         ratio={currentData.ratio}
@@ -91,6 +95,7 @@ const App = () => {
       <TextField id="leftStationName" label="左駅名" variant="outlined" value={currentData.leftStationName} onChange={(e) => { updateCurrentData("leftStationName", e.target.value) }} />
       <TextField id="leftStationNameFurigana" label="左駅名（よみがな）" variant="outlined" value={currentData.leftStationNameFurigana} onChange={(e) => { updateCurrentData("leftStationNameFurigana", e.target.value) }} />
       <TextField id="leftStationNameEnglish" label="左駅名（英語）" variant="outlined" value={currentData.leftStationNameEnglish} onChange={(e) => { updateCurrentData("leftStationNameEnglish", e.target.value) }} />
+      <TextField id="leftStationNumber" label="左駅ナンバリング" variant="outlined" value={currentData.leftStationNumber} onChange={(e) => { updateCurrentData("leftStationNumber", e.target.value) }} />
       <TextField id="stationName" label="駅名" variant="outlined" value={currentData.stationName} onChange={(e) => { updateCurrentData("stationName", e.target.value) }} />
       <TextField id="stationNameFurigana" label="駅名（ふりがな）" variant="outlined" value={currentData.stationNameFurigana} onChange={(e) => { updateCurrentData("stationNameFurigana", e.target.value) }} />
       <TextField id="stationNameEnglish" label="駅名（英語）" variant="outlined" value={currentData.stationNameEnglish} onChange={(e) => { updateCurrentData("stationNameEnglish", e.target.value) }} />
@@ -101,13 +106,12 @@ const App = () => {
       <TextField id="rightStationName" label="右駅名" variant="outlined" value={currentData.rightStationName} onChange={(e) => { updateCurrentData("rightStationName", e.target.value) }} />
       <TextField id="rightStationNameFurigana" label="右駅名（ふりがな）" variant="outlined" value={currentData.rightStationNameFurigana} onChange={(e) => { updateCurrentData("rightStationNameFurigana", e.target.value) }} />
       <TextField id="rightStationNameEnglish" label="右駅名（英語）" variant="outlined" value={currentData.rightStationNameEnglish} onChange={(e) => { updateCurrentData("rightStationNameEnglish", e.target.value) }} />
-      <SketchPicker color={currentData.baseColor} onChange={(color) => { updateCurrentData("baseColor", color.hex) }} />
-      <SketchPicker color={currentData.lineColor} onChange={(color) => { updateCurrentData("lineColor", color.hex) }} />
+      <TextField id="rightStationNumber" label="右駅ナンバリング" variant="outlined" value={currentData.rightStationNumber} onChange={(e) => { updateCurrentData("rightStationNumber", e.target.value) }} />
       <Button variant="contained" onClick={() => {
         if (currentData.ratio == 7) {
           updateCurrentData("ratio", 3)
         } else {
-          updateCurrentData("ratio", currentData.ratio + 2)
+          updateCurrentData("ratio", currentData.ratio + 1)
         }
       }}>switch length</Button>
       <>
@@ -121,6 +125,8 @@ const App = () => {
           <ArrowForwardIcon fontSize="inherit" />
         </IconButton>
       </>
+      <SketchPicker color={currentData.baseColor} onChange={(color) => { updateCurrentData("baseColor", color.hex) }} />
+      <SketchPicker color={currentData.lineColor} onChange={(color) => { updateCurrentData("lineColor", color.hex) }} />
       <TextField fullWidth multiline variant="outlined" value={JSON.stringify(currentData, null, 2)} />
     </>
   )
