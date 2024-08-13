@@ -9,6 +9,7 @@ import useZoomSize from "../../hooks/useZoomSize"
 import { isMobile } from "react-device-detect"
 
 import '../../assets/css/fonts.css'
+import styled from "styled-components"
 
 const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<Konva.Stage>) => {
 
@@ -99,7 +100,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const scale = isMobile ? (windowWidth / width) : (windowWidth / width * zoomSize);
 
   return (
-    <>
+    <StageWrapper>
       <Stage width={width * scale} height={height * scale} ref={ref} key={stageKey} scaleX={scale} scaleY={scale}>
         <Layer>
           <Rect fill='white' x={0} y={0} width={width} height={height} />
@@ -180,8 +181,24 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           <Text text={stationNameEnglish} width={width} x={0} y={yOffset + 98} fontSize={16} fontStyle='600' fontFamily='OverusedGrotesk' fill='black' align='center' />
         </Layer>
       </Stage>
-    </>
+      <Overlay />
+      ***REMOVED***
+    </StageWrapper>
   )
 })
+
+const StageWrapper = styled.div`
+  position: relative;
+`
+
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  touch-action: auto;
+`
 
 export default JrEastSign
