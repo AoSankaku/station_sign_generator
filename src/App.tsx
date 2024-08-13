@@ -54,7 +54,7 @@ const App = () => {
   const handleSave = () => {
     console.dir(typeof (ref.current))
     if (ref.current && ref.current) {
-      const uri = ref.current.toDataURL();
+      const uri = ref.current.toDataURL({ pixelRatio: 3 });
       // Create a link element
       const link = document.createElement('a');
       link.download = `${currentData.stationName}.png`;
