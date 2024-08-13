@@ -52,7 +52,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     } else {
       setProcessedLeftStationNumber({})
     }
-  }, [stationNumber])
+  }, [leftStationNumber])
 
   useEffect(() => {
     if (rightStationNumber) {
@@ -60,7 +60,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     } else {
       setProcessedRightStationNumber({})
     }
-  }, [stationNumber])
+  }, [rightStationNumber])
 
   useEffect(() => {
     document.fonts.ready.then((fontFaceSet) => {
