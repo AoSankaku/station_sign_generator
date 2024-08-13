@@ -6,6 +6,7 @@ import Konva from "konva"
 import processStationNumber, { processedStationNumber } from "../../functions/processStationNumber"
 import useWindowSize from "../../hooks/useWindowSize"
 import useZoomSize from "../../hooks/useZoomSize"
+import { isMobile } from "react-device-detect"
 
 import '../../assets/css/fonts.css'
 
@@ -94,7 +95,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     return tempText.getWidth()
   }
 
-  const scale = (windowWidth) / width * zoomSize;
+  const scale = isMobile ? (windowWidth / width) : (windowWidth / width * zoomSize);
 
   return (
     <>
