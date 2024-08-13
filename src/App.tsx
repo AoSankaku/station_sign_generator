@@ -52,8 +52,7 @@ const App = () => {
   */
 
   const handleSave = () => {
-    console.dir(typeof (ref.current))
-    if (ref.current && ref.current) {
+    if (ref.current) {
       const uri = ref.current.toDataURL({ pixelRatio: 3 });
       // Create a link element
       const link = document.createElement('a');
