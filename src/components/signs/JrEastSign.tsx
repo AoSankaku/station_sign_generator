@@ -2,9 +2,9 @@ import { useState, useEffect, forwardRef } from "react"
 import StationProps from "./StationProps"
 
 import { Rect, Layer, Stage, Text, Line } from 'react-konva'
-import styled from 'styled-components'
 import Konva from "konva"
 import processStationNumber, { processedStationNumber } from "../../functions/processStationNumber"
+import useWindowSize from "../../hooks/useWindowSize"
 
 import '../../assets/css/fonts.css'
 
@@ -33,6 +33,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const [processedRightStationNumber, setProcessedRightStationNumber] = useState<processedStationNumber>({});
   // const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [stageKey, setStageKey] = useState(0)
+  const [windowWidth] = useWindowSize();
 
   useEffect(() => {
     setWidth(height * ratio);
@@ -70,7 +71,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
       // setIsFontLoaded(true)
       setStageKey(prevKey => prevKey + 1)
     })
-  }, [])
+  }, [windowWidth])
 
   const autoSpace = (str: string) => {
     return str.length <= 2 ? str.split('').join(' ') : str;
@@ -86,9 +87,14 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     return tempText.getWidth()
   }
 
+  const scale = (windowWidth) / width;
+
+  console.log("ww:", windowWidth)
+  console.log("actual width:", width * scale)
+
   return (
-    <SignWrapper>
-      <Stage width={width} height={height} ref={ref} key={stageKey}>
+    <>
+      <Stage width={width * scale} height={height * scale} ref={ref} key={stageKey} scaleX={scale} scaleY={scale}>
         <Layer>
           <Rect fill='white' x={0} y={0} width={width} height={height} />
           <Rect fill={baseColor} x={startingPoint} y={linePosY} width={width - 80} height={lineHeight} />
@@ -114,7 +120,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
             (direction == 'left' || direction == 'both') &&
             <>
               <Text text={leftStationNameEnglish} width={width} x={64} y={98} fontSize={13} fontFamily='OverusedGrotesk' fill='black' align='left' />
-            <Text text={autoSpace(leftStationName)} width={width} x={60} y={72} fontSize={21} fontStyle='400' fontFamily='NotoSansJP' fill='white' align='left' />
+              <Text text={autoSpace(leftStationName)} width={width} x={60} y={72} fontSize={21} fontStyle='400' fontFamily='NotoSansJP' fill='white' align='left' />
               {leftStationNumber &&
                 <>
                   <Rect stroke={lineColor} strokeWidth={2} x={44} y={97} width={15} height={15} cornerRadius={2} />
@@ -127,7 +133,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           {
             (direction == 'both' || direction == 'right') &&
             <>
-            <Text text={autoSpace(rightStationName)} width={width} x={-60} y={72} fontSize={21} fontStyle='400' fontFamily='NotoSansJP' fill='white' align='right' />
+              <Text text={autoSpace(rightStationName)} width={width} x={-60} y={72} fontSize={21} fontStyle='400' fontFamily='NotoSansJP' fill='white' align='right' />
               <Text text={rightStationNameEnglish} width={width} x={-68} y={98} fontSize={13} fontFamily='OverusedGrotesk' fill='black' align='right' />
               {rightStationNumber &&
                 <>
@@ -156,8 +162,8 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
               )
               : (<>
                 <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - getStationNameWidth()) / 2} y={18} width={30} height={30} cornerRadius={2} />
-              <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={22} width={30} height={30} align="center" />
-              <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={32} width={30} height={32} align="center" />
+                <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={22} width={30} height={30} align="center" />
+                <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={32} width={30} height={32} align="center" />
               </>)
             )
           }
@@ -167,12 +173,8 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           <Text text={stationNameEnglish} width={width} x={0} y={98} fontSize={16} fontStyle='600' fontFamily='OverusedGrotesk' fill='black' align='center' />
         </Layer>
       </Stage>
-    </SignWrapper>
+    </>
   )
 })
-
-const SignWrapper = styled.div`
-  width: 100%;
-`
 
 export default JrEastSign
