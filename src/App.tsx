@@ -63,7 +63,7 @@ const App = () => {
       link.click();
       document.body.removeChild(link);
     } else {
-      console.error('handleSave failed. This is completely unexpected behavior as the canvas is always rendered.')
+      console.error('Function handleSave failed. This is completely unexpected behavior as the canvas is always rendered.')
     }
   };
 
@@ -131,7 +131,6 @@ const App = () => {
     </>
   )
 }
-
 
 
 export default App
