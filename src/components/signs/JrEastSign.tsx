@@ -156,10 +156,11 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
             (stationThreeLetterCode ?
               (<>
                 <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - getStationNameWidth()) / 2} y={29} width={30} height={30} cornerRadius={2} />
-                <Rect stroke='black' strokeWidth={4} x={-48 + (width - getStationNameWidth()) / 2} y={25} width={36} height={37} cornerRadius={4} />
-                <Rect stroke='black' strokeWidth={4} x={-48 + (width - getStationNameWidth()) / 2} y={26} width={36} height={36} cornerRadius={4} />
-                <Rect stroke='black' strokeWidth={4} x={-48 + (width - getStationNameWidth()) / 2} y={22} width={36} height={40} cornerRadius={4} />
-                <Rect stroke='black' strokeWidth={4} x={-48 + (width - getStationNameWidth()) / 2} y={18} width={36} height={44} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={26} width={36} height={36} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={24} width={36} height={38} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={22} width={36} height={40} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={20} width={36} height={42} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={18} width={36} height={44} cornerRadius={4} />
                 <Text text={stationThreeLetterCode} fill='white' x={-45 + (width - getStationNameWidth()) / 2} fontSize={12} fontFamily={'HindSemiBold'} fontStyle="800" y={18} width={30} height={30} align="center" />
                 <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={33} width={30} height={30} align="center" />
                 <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={43} width={30} height={32} align="center" />
