@@ -5,6 +5,7 @@ import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import Konva from "konva"
 import processStationNumber, { processedStationNumber } from "../../functions/processStationNumber"
 import useWindowSize from "../../hooks/useWindowSize"
+import useZoomSize from "../../hooks/useZoomSize"
 
 import '../../assets/css/fonts.css'
 
@@ -34,6 +35,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   // const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [stageKey, setStageKey] = useState(0)
   const [windowWidth] = useWindowSize();
+  const zoomSize = useZoomSize();
 
   useEffect(() => {
     setWidth(height * ratio);
@@ -71,6 +73,11 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
       // setIsFontLoaded(true)
       setStageKey(prevKey => prevKey + 1)
     })
+  }, [])
+
+  useEffect(() => {
+    setStageKey(prevKey => prevKey + 1)
+    console.log("Updated canvas")
   }, [windowWidth])
 
   const autoSpace = (str: string) => {
@@ -87,10 +94,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     return tempText.getWidth()
   }
 
-  const scale = (windowWidth) / width;
-
-  console.log("ww:", windowWidth)
-  console.log("actual width:", width * scale)
+  const scale = (windowWidth) / width * zoomSize;
 
   return (
     <>
