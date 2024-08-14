@@ -3,7 +3,7 @@ import StationProps from "./StationProps"
 
 import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import Konva from "konva"
-import processStationNumber, { processedStationNumber } from "../../functions/processStationNumber"
+import processStationNumber from "../../functions/processStationNumber"
 import useWindowSize from "../../hooks/useWindowSize"
 import useZoomSize from "../../hooks/useZoomSize"
 import { isMobile } from "react-device-detect"
@@ -17,7 +17,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   // const font = new FontFace('CustomFont', 'url(/path/to/font.woff2)');
   //const stageRef = useRef<Konva.Stage>(null)
 
-  const { stationName, stationNameEnglish, stationNameFurigana, stationNameChinese, stationNameKorean, stationNote, leftStationName, leftStationNameEnglish, leftStationNumber, rightStationName, rightStationNameEnglish, rightStationNumber, stationNumber, stationThreeLetterCode, baseColor, lineColor, direction, ratio } = props
+  const { stationName, stationNameEnglish, stationNameFurigana, stationNameChinese, stationNameKorean, stationNote, stationArea, leftStationName, leftStationNameEnglish, leftStationNumber, rightStationName, rightStationNameEnglish, rightStationNumber, stationNumber, stationThreeLetterCode, baseColor, lineColor, direction, ratio } = props
   const getSpacedStationName = () => {
     const str = stationName
     switch (str.length) {
@@ -153,6 +153,14 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           <Text text={stationNameChinese} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 18} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
           <Text text={stationNameKorean} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 35} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
           <Text text={stationNameEnglish} width={width} x={0} y={yOffset + 98} fontSize={16} fontStyle='600' fontFamily='OverusedGrotesk' fill='black' align='center' />
+          {reversedStationArea?.map((e, i) => {
+            return (
+              <>
+                <Rect x={width - 40 + i * -22} y={yOffset + 14} fill={e.isWhite ? "white" : "black"} width={16} height={16} stroke="black" strokeWidth={1} />
+                <Text text={e.name} x={width - 39.5 + i * -22} y={yOffset + 14.5} fontSize={15} fontStyle='600' fontFamily='NotoSansJP' fill={e.isWhite ? "black" : "white"} align='center' />
+              </>
+            )
+          })}
         </Layer>
       </Stage>
       <Overlay />

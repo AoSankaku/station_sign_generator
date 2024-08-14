@@ -1,10 +1,11 @@
 import { useState, useRef } from 'react'
-import { Button, TextField, IconButton, Slider } from '@mui/material'
+import { Button, TextField, IconButton, Slider, Box, Grid, List, ListItem, ListItemText, Switch, ListSubheader } from '@mui/material'
 import Header from './components/Header'
 import JrEastSign from './components/signs/JrEastSign'
 import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { Delete } from '@mui/icons-material';
 import Konva from 'konva';
 import { SketchPicker } from 'react-color'
 import StationProps from './components/signs/StationProps';
@@ -26,11 +27,23 @@ const App = () => {
     stationNameKorean: '다카나와 게이트웨이',
     stationNumber: 'JY26',
     stationThreeLetterCode: 'TGW',
+    stationArea: [
+      {
+        id: 1,
+        name: "山",
+        isWhite: true,
+      },
+      {
+        id: 2,
+        name: "区",
+        isWhite: false,
+      }
+    ],
     rightStationName: '田町',
     rightStationNameFurigana: 'たまち',
     rightStationNameEnglish: 'Tamachi',
     rightStationNumber: 'JY27',
-    ratio: 5,
+    ratio: 4.5,
     direction: 'left',
     baseColor: '#36ab33',
     lineColor: '#89ff12',
@@ -77,6 +90,7 @@ const App = () => {
         stationNameKorean={currentData.stationNameKorean}
         stationNumber={currentData.stationNumber}
         stationThreeLetterCode={currentData.stationThreeLetterCode}
+        stationArea={currentData.stationArea}
         leftStationName={currentData.leftStationName}
         leftStationNameEnglish={currentData.leftStationNameEnglish}
         leftStationNumber={currentData.leftStationNumber}
@@ -91,7 +105,7 @@ const App = () => {
       />
 
       <Button variant="contained" onClick={() => handleSave()}>save</Button>
-      <Slider defaultValue={4} valueLabelDisplay='auto' step={1} marks min={3} max={8} style={{ width: "200px" }} onChange={(_, v) => updateCurrentData("ratio", v as number)} />
+      <Slider defaultValue={currentData.ratio} valueLabelDisplay='auto' step={0.5} marks min={3} max={8} style={{ width: "200px" }} onChange={(_, v) => updateCurrentData("ratio", v as number)} />
       <TextField id="leftStationName" label="左駅名" variant="outlined" value={currentData.leftStationName} onChange={(e) => { updateCurrentData("leftStationName", e.target.value) }} />
       <TextField id="leftStationNameFurigana" label="左駅名（よみがな）" variant="outlined" value={currentData.leftStationNameFurigana} onChange={(e) => { updateCurrentData("leftStationNameFurigana", e.target.value) }} />
       <TextField id="leftStationNameEnglish" label="左駅名（英語）" variant="outlined" value={currentData.leftStationNameEnglish} onChange={(e) => { updateCurrentData("leftStationNameEnglish", e.target.value) }} />
@@ -118,6 +132,70 @@ const App = () => {
           <ArrowForwardIcon fontSize="inherit" />
         </IconButton>
       </>
+      <Box sx={{ flexGrow: 1, maxWidth: 150 }}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            <Button variant='contained' onClick={() => {
+              updateCurrentData("stationArea", currentData.stationArea ? [
+                ...currentData.stationArea,
+                {
+                  id: Date.now() - 1000000,
+                  name: "",
+                  isWhite: true,
+                }
+              ] : undefined)
+            }}>追加</Button>
+            <List subheader={<ListSubheader>特定都区市内</ListSubheader>}>
+              {currentData.stationArea?.map((e) => {
+                return (
+                  <ListItem
+                    key={e.id}
+                    secondaryAction={
+                      <IconButton edge="end" aria-label='delete' onClick={() => {
+                        updateCurrentData("stationArea", currentData.stationArea?.filter(c => c.id !== e.id))
+                      }}>
+                        <Delete />
+                      </IconButton>
+                    }
+                  >
+                    <TextField label="名称" variant='standard' value={e.name} onChange={(i) => {
+                      const nextStationArea = currentData.stationArea?.map((c) => {
+                        if (e.id === c.id) {
+                          return ({
+                            id: c.id,
+                            name: i.target.value,
+                            isWhite: c.isWhite,
+                          });
+                        } else {
+                          return c;
+                        }
+                      })
+                      updateCurrentData("stationArea", nextStationArea)
+                    }} />
+                    <Switch
+                      checked={e.isWhite}
+                      onChange={() => {
+                        const nextStationArea = currentData.stationArea?.map((c) => {
+                          if (e.id === c.id) {
+                            return ({
+                              id: c.id,
+                              name: c.name,
+                              isWhite: !c.isWhite,
+                            });
+                          } else {
+                            return c;
+                          }
+                        })
+                        updateCurrentData("stationArea", nextStationArea)
+                      }}
+                    />
+                  </ListItem>
+                )
+              })}
+            </List>
+          </Grid>
+        </Grid>
+      </Box>
       <SketchPicker color={currentData.baseColor} onChange={(color) => { updateCurrentData("baseColor", color.hex) }} />
       <SketchPicker color={currentData.lineColor} onChange={(color) => { updateCurrentData("lineColor", color.hex) }} />
       <TextField fullWidth multiline variant="outlined" value={JSON.stringify(currentData, null, 2)} />

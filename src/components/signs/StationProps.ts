@@ -1,6 +1,12 @@
 import { RefObject } from "react";
 import Konva from "konva";
 
+type StationArea = {
+  id: number;
+  name: string;
+  isWhite?: boolean;
+}
+
 interface StationProps {
   //main
   stationName: string;
@@ -9,8 +15,9 @@ interface StationProps {
   stationNameEnglish: string;
   stationNameKorean?: string;
   stationNameChinese?: string;
-  stationNumber?: string;
+  stationNumber?: string;//string[]
   stationThreeLetterCode?: string;
+  stationArea?: StationArea[];
   //right
   rightStationName: string;
   rightStationNameEnglish: string;
