@@ -66,10 +66,24 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     fontStyle: '900',
   }
 
+  const smallStationNameStyle = {
+    fontSize: 30,
+    fontFamily: 'NotoSansJP',
+    fontStyle: '800',
+  }
+
   const getStationNameWidth = () => {
     const tempText = new Konva.Text({
       text: getSpacedStationName(),
       ...stationNameStyle
+    });
+    return tempText.getWidth()
+  }
+
+  const getSmallStationNameWidth = () => {
+    const tempText = new Konva.Text({
+      text: getSpacedStationName(),
+      ...smallStationNameStyle
     });
     return tempText.getWidth()
   }
@@ -128,22 +142,31 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
               }
             </>
           }
+
+          {/* Outline */}
           <Rect stroke='grey' strokeWidth={8} x={0} y={0} width={width} height={height} />
+
+          {/* Center Square (Additional layers can be added later) NEEDS UPDATE */}
           <Rect fill={lineColor} x={width / 2 - 12} y={yOffset + 69.5} width={25} height={25} />
+
           {stationNote ?
             <>
-              <Text text={stationNote} width={width} x={0} y={yOffset + 52} fontSize={12} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
-              <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 16} fontSize={32} fontFamily='NotoSansJP' fontStyle="900" fill='black' align='center' />
+              {/* With stationNote (smaller station name, medium station note) */}
+              <Text text={stationNote} width={width} x={0} y={yOffset + 40} fontSize={24} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
+              <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 8} {...smallStationNameStyle} fill='black' align='center' />
             </>
             :
             <>
+              {/* Without stationNote (large station name, small furigana) */}
               <Text text={stationNameFurigana} width={width} x={0} y={yOffset + 52} fontSize={12} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
               <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 16} {...stationNameStyle} fill='black' align='center' />
             </>
           }
+
+          {/* If station number exists */}
           {processedStationNumber.prefix &&
             (stationThreeLetterCode ?
-              (<>
+              <>
                 <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - getStationNameWidth()) / 2} y={yOffset + 29} width={30} height={30} cornerRadius={2} />
                 <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 26} width={36} height={36} cornerRadius={5} />
                 <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 24} width={36} height={38} cornerRadius={4} />
@@ -155,16 +178,25 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
                 <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 33} width={30} height={30} align="center" />
                 <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 43} width={30} height={32} align="center" />
               </>
-              )
-              : (<>
+              :
+              <>
                 <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - getStationNameWidth()) / 2} y={yOffset + 18} width={30} height={30} cornerRadius={2} />
                 <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 22} width={30} height={30} align="center" />
                 <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 32} width={30} height={32} align="center" />
-              </>)
+              </>
             )
           }
-          <Text text={stationNameChinese} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 18} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
-          <Text text={stationNameKorean} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 35} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
+          {stationNote ?
+            <>
+              <Text text={stationNameChinese} x={8 + (width + getSmallStationNameWidth()) / 2} y={yOffset + 18 - 8} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
+              <Text text={stationNameKorean} x={8 + (width + getSmallStationNameWidth()) / 2} y={yOffset + 35 - 9} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
+            </>
+            :
+            <>
+              <Text text={stationNameChinese} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 18} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
+              <Text text={stationNameKorean} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 35} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
+            </>
+          }
           <Text text={stationNameEnglish} width={width} x={0} y={yOffset + 98} fontSize={16} fontStyle='600' fontFamily='OverusedGrotesk' fill='black' align='center' />
           {reversedStationArea?.map((e, i) => {
             return (
