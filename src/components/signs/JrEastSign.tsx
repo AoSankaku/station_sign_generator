@@ -32,38 +32,14 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const startingPoint = 40;
   const lineHeight = 24
   const linePosY = 70 + yOffset
-  const [processedStationNumber, setProcessedStationNumber] = useState<processedStationNumber>({});
-  const [processedLeftStationNumber, setProcessedLeftStationNumber] = useState<processedStationNumber>({});
-  const [processedRightStationNumber, setProcessedRightStationNumber] = useState<processedStationNumber>({});
+  const processedStationNumber = stationNumber ? processStationNumber(stationNumber) : {}
+  const processedLeftStationNumber = leftStationNumber ? processStationNumber(leftStationNumber) : {}
+  const processedRightStationNumber = rightStationNumber ? processStationNumber(rightStationNumber) : {}
   // const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [stageKey, setStageKey] = useState(0)
   const [windowWidth] = useWindowSize();
   const zoomSize = useZoomSize();
   const reversedStationArea = stationArea ? [...stationArea].reverse() : undefined;
-
-  useEffect(() => {
-    if (stationNumber) {
-      setProcessedStationNumber(processStationNumber(stationNumber))
-    } else {
-      setProcessedStationNumber({})
-    }
-  }, [stationNumber])
-
-  useEffect(() => {
-    if (leftStationNumber) {
-      setProcessedLeftStationNumber(processStationNumber(leftStationNumber))
-    } else {
-      setProcessedLeftStationNumber({})
-    }
-  }, [leftStationNumber])
-
-  useEffect(() => {
-    if (rightStationNumber) {
-      setProcessedRightStationNumber(processStationNumber(rightStationNumber))
-    } else {
-      setProcessedRightStationNumber({})
-    }
-  }, [rightStationNumber])
 
   useEffect(() => {
     document.fonts.ready.then((fontFaceSet) => {
