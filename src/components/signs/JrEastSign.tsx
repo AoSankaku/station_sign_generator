@@ -18,14 +18,14 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   //const stageRef = useRef<Konva.Stage>(null)
 
   const { stationName, stationNameEnglish, stationNameFurigana, stationNameChinese, stationNameKorean, stationNote, stationArea, leftStationName, leftStationNameEnglish, leftStationNumber, rightStationName, rightStationNameEnglish, rightStationNumber, stationNumber, stationThreeLetterCode, baseColor, lineColor, direction, ratio } = props
-  const getSpacedStationName = () => {
-    const str = stationName
+  const spacedStationName = (() => {
+    const str = stationName;
     switch (str.length) {
-      case 2: return str.split('').join('　')
-      case 3: return str.split('').join(' ')
-      default: return str
+      case 2: return str.split('').join('　');
+      case 3: return str.split('').join(' ');
+      default: return str;
     }
-  }
+  })();
   const height = 140;
   const width = height * ratio;
   const yOffset = 6;
@@ -74,7 +74,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
 
   const getStationNameWidth = () => {
     const tempText = new Konva.Text({
-      text: getSpacedStationName(),
+      text: spacedStationName,
       ...stationNameStyle
     });
     return tempText.getWidth()
@@ -82,7 +82,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
 
   const getSmallStationNameWidth = () => {
     const tempText = new Konva.Text({
-      text: getSpacedStationName(),
+      text: spacedStationName,
       ...smallStationNameStyle
     });
     return tempText.getWidth()
@@ -153,13 +153,13 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
             <>
               {/* With stationNote (smaller station name, medium station note) */}
               <Text text={stationNote} width={width} x={0} y={yOffset + 40} fontSize={24} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
-              <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 8} {...smallStationNameStyle} fill='black' align='center' />
+              <Text text={spacedStationName} width={width} x={0} y={yOffset + 8} {...smallStationNameStyle} fill='black' align='center' />
             </>
             :
             <>
               {/* Without stationNote (large station name, small furigana) */}
               <Text text={stationNameFurigana} width={width} x={0} y={yOffset + 52} fontSize={12} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
-              <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 16} {...stationNameStyle} fill='black' align='center' />
+              <Text text={spacedStationName} width={width} x={0} y={yOffset + 16} {...stationNameStyle} fill='black' align='center' />
             </>
           }
 
