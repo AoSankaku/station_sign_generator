@@ -142,7 +142,7 @@ const App = () => {
               updateCurrentData("stationArea", currentData.stationArea ? [
                 ...currentData.stationArea,
                 {
-                  id: Date.now() - 1000000,
+                  id: Date.now() - 1723600000000,
                   name: "",
                   isWhite: true,
                 }
