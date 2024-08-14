@@ -63,7 +63,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const getStationNameWidth = () => {
     const tempText = new Konva.Text({
       text: getSpacedStationName(),
-      fontSize: 31,
+      fontSize: 32,
       fontFamily: 'NotoSansJP',
       fontStyle: '900',
     });
@@ -126,17 +126,18 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           }
           <Rect stroke='grey' strokeWidth={8} x={0} y={0} width={width} height={height} />
           <Rect fill={lineColor} x={width / 2 - 12} y={yOffset + 69.5} width={25} height={25} />
-          <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 17} fontSize={31} fontFamily='NotoSansJP' fontStyle="900" fill='black' align='center' />
+          <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 16} fontSize={32} fontFamily='NotoSansJP' fontStyle="900" fill='black' align='center' />
           {processedStationNumber.prefix &&
             (stationThreeLetterCode ?
               (<>
                 <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - getStationNameWidth()) / 2} y={yOffset + 29} width={30} height={30} cornerRadius={2} />
-                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 26} width={36} height={36} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 26} width={36} height={36} cornerRadius={5} />
                 <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 24} width={36} height={38} cornerRadius={4} />
                 <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 22} width={36} height={40} cornerRadius={4} />
                 <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 20} width={36} height={42} cornerRadius={4} />
                 <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 18} width={36} height={44} cornerRadius={4} />
-                <Text text={stationThreeLetterCode} fill='white' x={-45 + (width - getStationNameWidth()) / 2} fontSize={12} fontFamily={'HindSemiBold'} fontStyle="800" y={yOffset + 18} width={30} height={30} align="center" />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 17} width={36} height={45} cornerRadius={4} />
+                <Text text={stationThreeLetterCode} fill='white' x={-45 + (width - getStationNameWidth()) / 2} fontSize={12.2} fontFamily={'HindSemiBold'} fontStyle="800" y={yOffset + 18} width={30} height={30} align="center" />
                 <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 33} width={30} height={30} align="center" />
                 <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 43} width={30} height={32} align="center" />
               </>
