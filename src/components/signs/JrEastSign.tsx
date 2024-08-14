@@ -71,22 +71,21 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     fontFamily: 'NotoSansJP',
     fontStyle: '800',
   }
-
-  const getStationNameWidth = () => {
+  const stationNameWidth = (() => {
     const tempText = new Konva.Text({
       text: spacedStationName,
       ...stationNameStyle
     });
     return tempText.getWidth()
-  }
+  })();
 
-  const getSmallStationNameWidth = () => {
+  const smallStationNameWidth = (() => {
     const tempText = new Konva.Text({
       text: spacedStationName,
       ...smallStationNameStyle
     });
     return tempText.getWidth()
-  }
+  })();
 
   const scale = isMobile ? (windowWidth / width) : (windowWidth / width * zoomSize);
 
@@ -167,34 +166,34 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           {processedStationNumber.prefix &&
             (stationThreeLetterCode ?
               <>
-                <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - getStationNameWidth()) / 2} y={yOffset + 29} width={30} height={30} cornerRadius={2} />
-                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 26} width={36} height={36} cornerRadius={5} />
-                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 24} width={36} height={38} cornerRadius={4} />
-                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 22} width={36} height={40} cornerRadius={4} />
-                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 20} width={36} height={42} cornerRadius={4} />
-                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 18} width={36} height={44} cornerRadius={4} />
-                <Rect stroke='black' strokeWidth={3} x={-48 + (width - getStationNameWidth()) / 2} y={yOffset + 17} width={36} height={45} cornerRadius={4} />
-                <Text text={stationThreeLetterCode} fill='white' x={-45 + (width - getStationNameWidth()) / 2} fontSize={12.2} fontFamily={'HindSemiBold'} fontStyle="800" y={yOffset + 18} width={30} height={30} align="center" />
-                <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 33} width={30} height={30} align="center" />
-                <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 43} width={30} height={32} align="center" />
+                <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - stationNameWidth) / 2} y={yOffset + 29} width={30} height={30} cornerRadius={2} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - stationNameWidth) / 2} y={yOffset + 26} width={36} height={36} cornerRadius={5} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - stationNameWidth) / 2} y={yOffset + 24} width={36} height={38} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - stationNameWidth) / 2} y={yOffset + 22} width={36} height={40} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - stationNameWidth) / 2} y={yOffset + 20} width={36} height={42} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - stationNameWidth) / 2} y={yOffset + 18} width={36} height={44} cornerRadius={4} />
+                <Rect stroke='black' strokeWidth={3} x={-48 + (width - stationNameWidth) / 2} y={yOffset + 17} width={36} height={45} cornerRadius={4} />
+                <Text text={stationThreeLetterCode} fill='white' x={-45 + (width - stationNameWidth) / 2} fontSize={12.2} fontFamily={'HindSemiBold'} fontStyle="800" y={yOffset + 18} width={30} height={30} align="center" />
+                <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - stationNameWidth) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 33} width={30} height={30} align="center" />
+                <Text text={processedStationNumber.number} fill='black' x={-45 + (width - stationNameWidth) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 43} width={30} height={32} align="center" />
               </>
               :
               <>
-                <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - getStationNameWidth()) / 2} y={yOffset + 18} width={30} height={30} cornerRadius={2} />
-                <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 22} width={30} height={30} align="center" />
-                <Text text={processedStationNumber.number} fill='black' x={-45 + (width - getStationNameWidth()) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 32} width={30} height={32} align="center" />
+                <Rect stroke={lineColor} strokeWidth={3} x={-45 + (width - stationNameWidth) / 2} y={yOffset + 18} width={30} height={30} cornerRadius={2} />
+                <Text text={processedStationNumber.prefix} fill='black' x={-45 + (width - stationNameWidth) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 22} width={30} height={30} align="center" />
+                <Text text={processedStationNumber.number} fill='black' x={-45 + (width - stationNameWidth) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 32} width={30} height={32} align="center" />
               </>
             )
           }
           {stationNote ?
             <>
-              <Text text={stationNameChinese} x={8 + (width + getSmallStationNameWidth()) / 2} y={yOffset + 18 - 8} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
-              <Text text={stationNameKorean} x={8 + (width + getSmallStationNameWidth()) / 2} y={yOffset + 35 - 9} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
+              <Text text={stationNameChinese} x={8 + (width + smallStationNameWidth) / 2} y={yOffset + 18 - 8} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
+              <Text text={stationNameKorean} x={8 + (width + smallStationNameWidth) / 2} y={yOffset + 35 - 9} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
             </>
             :
             <>
-              <Text text={stationNameChinese} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 18} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
-              <Text text={stationNameKorean} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 35} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
+              <Text text={stationNameChinese} x={8 + (width + stationNameWidth) / 2} y={yOffset + 18} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
+              <Text text={stationNameKorean} x={8 + (width + stationNameWidth) / 2} y={yOffset + 35} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
             </>
           }
           <Text text={stationNameEnglish} width={width} x={0} y={yOffset + 98} fontSize={16} fontStyle='600' fontFamily='OverusedGrotesk' fill='black' align='center' />
