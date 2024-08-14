@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { Button, TextField, IconButton, Slider, Box, Grid, List, ListItem, ListItemText, Switch, ListSubheader } from '@mui/material'
+import { Button, TextField, IconButton, Slider, Box, Grid, List, ListItem, Switch, ListSubheader } from '@mui/material'
 import Header from './components/Header'
 import JrEastSign from './components/signs/JrEastSign'
 import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle';
@@ -39,6 +39,7 @@ const App = () => {
         isWhite: false,
       }
     ],
+    stationNote: "",
     rightStationName: '田町',
     rightStationNameFurigana: 'たまち',
     rightStationNameEnglish: 'Tamachi',
@@ -91,6 +92,7 @@ const App = () => {
         stationNumber={currentData.stationNumber}
         stationThreeLetterCode={currentData.stationThreeLetterCode}
         stationArea={currentData.stationArea}
+        stationNote={currentData.stationNote}
         leftStationName={currentData.leftStationName}
         leftStationNameEnglish={currentData.leftStationNameEnglish}
         leftStationNumber={currentData.leftStationNumber}
@@ -117,6 +119,7 @@ const App = () => {
       <TextField id="stationNameKorean" label="駅名（한국어）" variant="outlined" value={currentData.stationNameKorean} onChange={(e) => { updateCurrentData("stationNameKorean", e.target.value) }} />
       <TextField id="stationNumber" label="駅ナンバリング" variant="outlined" value={currentData.stationNumber} onChange={(e) => { updateCurrentData("stationNumber", e.target.value) }} />
       <TextField id="stationThreeLetterCode" label="スリーレターコード" variant="outlined" value={currentData.stationThreeLetterCode} onChange={(e) => { updateCurrentData("stationThreeLetterCode", e.target.value) }} />
+      <TextField id="stationNote" label="駅補足" variant="outlined" value={currentData.stationNote} onChange={(e) => { updateCurrentData("stationNote", e.target.value) }} />
       <TextField id="rightStationName" label="右駅名" variant="outlined" value={currentData.rightStationName} onChange={(e) => { updateCurrentData("rightStationName", e.target.value) }} />
       <TextField id="rightStationNameFurigana" label="右駅名（ふりがな）" variant="outlined" value={currentData.rightStationNameFurigana} onChange={(e) => { updateCurrentData("rightStationNameFurigana", e.target.value) }} />
       <TextField id="rightStationNameEnglish" label="右駅名（英語）" variant="outlined" value={currentData.rightStationNameEnglish} onChange={(e) => { updateCurrentData("rightStationNameEnglish", e.target.value) }} />

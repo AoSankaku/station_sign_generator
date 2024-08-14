@@ -60,12 +60,16 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     return str.length <= 2 ? str.split('').join(' ') : str;
   }
 
+  const stationNameStyle = {
+    fontSize: 32,
+    fontFamily: 'NotoSansJP',
+    fontStyle: '900',
+  }
+
   const getStationNameWidth = () => {
     const tempText = new Konva.Text({
       text: getSpacedStationName(),
-      fontSize: 32,
-      fontFamily: 'NotoSansJP',
-      fontStyle: '900',
+      ...stationNameStyle
     });
     return tempText.getWidth()
   }
@@ -126,7 +130,17 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           }
           <Rect stroke='grey' strokeWidth={8} x={0} y={0} width={width} height={height} />
           <Rect fill={lineColor} x={width / 2 - 12} y={yOffset + 69.5} width={25} height={25} />
-          <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 16} fontSize={32} fontFamily='NotoSansJP' fontStyle="900" fill='black' align='center' />
+          {stationNote ?
+            <>
+              <Text text={stationNote} width={width} x={0} y={yOffset + 52} fontSize={12} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
+              <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 16} fontSize={32} fontFamily='NotoSansJP' fontStyle="900" fill='black' align='center' />
+            </>
+            :
+            <>
+              <Text text={stationNameFurigana} width={width} x={0} y={yOffset + 52} fontSize={12} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
+              <Text text={getSpacedStationName()} width={width} x={0} y={yOffset + 16} {...stationNameStyle} fill='black' align='center' />
+            </>
+          }
           {processedStationNumber.prefix &&
             (stationThreeLetterCode ?
               (<>
@@ -149,7 +163,6 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
               </>)
             )
           }
-          <Text text={stationNameFurigana} width={width} x={0} y={yOffset + 52} fontSize={12} fontStyle='800' fontFamily='NotoSansJP' fill='black' align='center' />
           <Text text={stationNameChinese} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 18} fontSize={10} fontStyle='400' fontFamily='NotoSansTC' fill='black' align='center' />
           <Text text={stationNameKorean} x={8 + (width + getStationNameWidth()) / 2} y={yOffset + 35} fontSize={10} fontStyle='400' fontFamily='NotoSansKR' fill='black' align='center' />
           <Text text={stationNameEnglish} width={width} x={0} y={yOffset + 98} fontSize={16} fontStyle='600' fontFamily='OverusedGrotesk' fill='black' align='center' />
