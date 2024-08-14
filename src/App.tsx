@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { Button, TextField, IconButton } from '@mui/material'
+import { Button, TextField, IconButton, Slider } from '@mui/material'
 import Header from './components/Header'
 import JrEastSign from './components/signs/JrEastSign'
 import SwapHorizontalCircleIcon from '@mui/icons-material/SwapHorizontalCircle';
@@ -91,6 +91,7 @@ const App = () => {
       />
 
       <Button variant="contained" onClick={() => handleSave()}>save</Button>
+      <Slider defaultValue={4} valueLabelDisplay='auto' step={1} marks min={3} max={8} style={{ width: "200px" }} onChange={(_, v) => updateCurrentData("ratio", v as number)} />
       <TextField id="leftStationName" label="左駅名" variant="outlined" value={currentData.leftStationName} onChange={(e) => { updateCurrentData("leftStationName", e.target.value) }} />
       <TextField id="leftStationNameFurigana" label="左駅名（よみがな）" variant="outlined" value={currentData.leftStationNameFurigana} onChange={(e) => { updateCurrentData("leftStationNameFurigana", e.target.value) }} />
       <TextField id="leftStationNameEnglish" label="左駅名（英語）" variant="outlined" value={currentData.leftStationNameEnglish} onChange={(e) => { updateCurrentData("leftStationNameEnglish", e.target.value) }} />
@@ -106,13 +107,6 @@ const App = () => {
       <TextField id="rightStationNameFurigana" label="右駅名（ふりがな）" variant="outlined" value={currentData.rightStationNameFurigana} onChange={(e) => { updateCurrentData("rightStationNameFurigana", e.target.value) }} />
       <TextField id="rightStationNameEnglish" label="右駅名（英語）" variant="outlined" value={currentData.rightStationNameEnglish} onChange={(e) => { updateCurrentData("rightStationNameEnglish", e.target.value) }} />
       <TextField id="rightStationNumber" label="右駅ナンバリング" variant="outlined" value={currentData.rightStationNumber} onChange={(e) => { updateCurrentData("rightStationNumber", e.target.value) }} />
-      <Button variant="contained" onClick={() => {
-        if (currentData.ratio == 7) {
-          updateCurrentData("ratio", 3)
-        } else {
-          updateCurrentData("ratio", currentData.ratio + 1)
-        }
-      }}>switch length</Button>
       <>
         <IconButton aria-label="left" size="large" onClick={() => updateCurrentData("direction", "left")}>
           <ArrowBackIcon fontSize="inherit" />
