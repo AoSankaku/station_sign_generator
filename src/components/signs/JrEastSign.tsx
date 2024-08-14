@@ -27,7 +27,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
     }
   }
   const height = 140;
-  const [width, setWidth] = useState(height * ratio);
+  const width = height * ratio;
   const yOffset = 6;
   const startingPoint = 40;
   const lineHeight = 24
@@ -39,10 +39,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const [stageKey, setStageKey] = useState(0)
   const [windowWidth] = useWindowSize();
   const zoomSize = useZoomSize();
-
-  useEffect(() => {
-    setWidth(height * ratio);
-  }, [ratio])
+  const reversedStationArea = stationArea ? [...stationArea].reverse() : undefined;
 
   useEffect(() => {
     if (stationNumber) {
