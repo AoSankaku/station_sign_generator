@@ -7,7 +7,10 @@ type StationArea = {
   isWhite?: boolean;
 }
 
-interface StationProps {
+export type Direction = 'left' | 'right' | 'both';
+
+
+interface DirectInputStationProps {
   //main
   stationName: string;
   stationNameFurigana: string;
@@ -15,7 +18,7 @@ interface StationProps {
   stationNameEnglish: string;
   stationNameKorean?: string;
   stationNameChinese?: string;
-  stationNumber?: string;//string[]
+  stationNumber?: string[];
   stationThreeLetterCode?: string;
   stationArea?: StationArea[];
   //right
@@ -32,8 +35,8 @@ interface StationProps {
   lineColor: string;
   baseColor: string;
   ratio: number;
-  direction?: 'left' | 'right' | 'both';
+  direction?: Direction;
   ref?: RefObject<Konva.Stage>;
 }
 
-export default StationProps
+export default DirectInputStationProps

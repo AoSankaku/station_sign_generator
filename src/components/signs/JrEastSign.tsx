@@ -1,5 +1,5 @@
 import { useState, useEffect, forwardRef } from "react"
-import StationProps from "./StationProps"
+import StationProps from "./DirectInputStationProps"
 
 import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import Konva from "konva"
@@ -32,7 +32,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const startingPoint = 40;
   const lineHeight = 24
   const linePosY = 70 + yOffset
-  const processedStationNumber = stationNumber ? processStationNumber(stationNumber) : {}
+  const processedStationNumber = stationNumber ? processStationNumber(stationNumber[0]) : {}
   const processedLeftStationNumber = leftStationNumber ? processStationNumber(leftStationNumber) : {}
   const processedRightStationNumber = rightStationNumber ? processStationNumber(rightStationNumber) : {}
   // const [isFontLoaded, setIsFontLoaded] = useState(false)
@@ -212,7 +212,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
         </Layer>
       </Stage>
       <Overlay />
-      <img src="temp\test.jpg" width={740} />
+      <img src="temp\test.jpg" width={720} />
     </StageWrapper>
   )
 })
