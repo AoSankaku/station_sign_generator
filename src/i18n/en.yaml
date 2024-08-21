@@ -1,5 +1,8 @@
 header:
   title: "Railway Sign Generator (Blue Triangle Edition)"
+  tooltip:
+    lang: Change Locale
+    share: Share This Tool
 input:
   direct:
     swaplr: "Swap left and right"
