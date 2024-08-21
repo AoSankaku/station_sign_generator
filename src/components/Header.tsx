@@ -89,6 +89,7 @@ const Header = () => {
             }}
             open={Boolean(anchorElLang)}
             onClose={handleCloseLangMenu}
+            disableScrollLock={true}
           >
             {langs.map((e) => (
               <MenuItem key={e.lang} style={{ display: 'flex', gap: '10px' }} onClick={() => {
