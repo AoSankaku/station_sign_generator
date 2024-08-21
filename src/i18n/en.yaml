@@ -16,6 +16,8 @@ input:
     trc: "Station Code"
     note: "Station Note (Larger Text Below Station Name)"
     rstation: "Right Station Name"
-    rlead: "Right Station Subtext"
+    rread: "Right Station Subtext"
     ren: "Right Station Subtext"
     rnum: "Right Station Number"
+error:
+  on-save: "Function handleSave failed. This is completely unexpected behavior as the canvas is always rendered."

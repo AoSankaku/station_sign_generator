@@ -1,21 +1,23 @@
 header:
-  title: "駅名標ジェネレーター 青三角版"
+  title: 駅名標ジェネレーター 青三角版
 input:
   direct:
     swaplr: "左右を入れ替える"
-    lstation: "左駅名"
+    lstation: "左駅名（ひらがな）"
     lread: "左"
     len: "左駅名（英語）"
     lnum: "左駅番号"
     station: "駅名"
     read: "駅名（よみ）"
-    en: "駅名（英語）"
+    en: "駅名（English）"
     ch: "駅名（繁体中文）"
-    kp: "駅名（Korean）"
+    kp: "駅名（한국어）"
     num: "駅番号"
     trc: "スリーレターコード"
     note: "駅情報"
     rstation: "右駅名"
-    rlead: "Right Station Subtext"
-    ren: "Right Station Subtext"
-    rnum: "Right Station Number"
+    rread: "右駅名（ひらがな）"
+    ren: "右駅名（English）"
+    rnum: "右駅番号"
+error:
+  on-save: 保存に失敗しました。駅名標の表示があるにも関わらずこのエラーが出た場合、予期せぬ不具合ですので開発者に報告してください。
