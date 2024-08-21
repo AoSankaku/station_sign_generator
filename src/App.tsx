@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { Button } from '@mui/material'
+import { Button, Toolbar } from '@mui/material'
 import Header from './components/Header'
 import JrEastSign from './components/signs/JrEastSign'
 import { Download } from '@mui/icons-material';
@@ -7,10 +7,13 @@ import Konva from 'konva';
 import DirectInputStationProps from './components/signs/DirectInputStationProps';
 import DirectInput from './components/inputs/DirectInput';
 import InputStationInfo from './components/InputStationInfo';
+import { useTranslation } from "react-i18next"
 
 const App = () => {
 
   const ref = useRef<Konva.Stage>(null)
+
+  const { t } = useTranslation()
 
   // Default Value - Will be replaced with LocalStorage data
   const [currentData, setCurrentData] = useState<DirectInputStationProps>({
@@ -80,7 +83,7 @@ const App = () => {
       link.click();
       document.body.removeChild(link);
     } else {
-      console.error('Function handleSave failed. This is completely unexpected behavior as the canvas is always rendered.')
+      console.error(t("error.on-save"))
     }
   };
 
@@ -113,7 +116,7 @@ const App = () => {
   return (
     <>
       <Header />
-      <InputStationInfo text={test.text} text2={test.text2} onChange={handleChangeTest} />
+      <Toolbar />
       <JrEastSign
         stationName={currentData.stationName}
         stationNameFurigana={currentData.stationNameFurigana}
@@ -136,8 +139,9 @@ const App = () => {
         direction={currentData.direction}
         ref={ref}
       />
-      <DirectInput {...currentData} onChange={handleChangeDirect} />
       <Button variant="contained" onClick={() => handleSave()}><Download />save</Button>
+      <DirectInput {...currentData} onChange={handleChangeDirect} />
+      <InputStationInfo text={test.text} text2={test.text2} onChange={handleChangeTest} />
     </>
   )
 }
