@@ -3,6 +3,15 @@ header:
   tooltip:
     lang: Change Locale
     share: Share This Tool
+    share-options:
+      twitter: "Twitter (Formerly X)"
+      x: X
+      discord: Discord
+      misskey: Misskey
+      mastodon: Mastodon
+      reddit: Reddit
+      line: LINE
+      copy: Copy URL
 input:
   direct:
     swaplr: "Swap left and right"

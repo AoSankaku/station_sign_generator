@@ -3,6 +3,15 @@ header:
   tooltip:
     lang: 言語を変更
     share: ツールを共有
+    share-options:
+      twitter: "Twitter (旧X)"
+      x: X
+      discord: Discord
+      misskey: Misskey
+      mastodon: Mastodon
+      reddit: Reddit
+      line: LINE
+      copy: URLをコピー
 input:
   direct:
     swaplr: "左右を入れ替える"

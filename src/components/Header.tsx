@@ -4,11 +4,18 @@ import { Share } from "@mui/icons-material";
 import styled from "styled-components";
 import TrainIcon from '@mui/icons-material/Train';
 import { JP, US } from "country-flag-icons/react/3x2";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
+import { BsTwitter, BsCopy } from "react-icons/bs";
+import { SiMisskey, SiDiscord, SiMastodon, SiLine, SiX, SiReddit } from "react-icons/si";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
-  const langs = [
+  type lang = {
+    langName: string,
+    lang: string,
+    flag: ReactElement,
+  }
+  const langs: lang[] = [
     {
       langName: '日本語',
       lang: 'ja',
@@ -20,6 +27,62 @@ const Header = () => {
       flag: <US style={{ width: '2em' }} />
     },
   ];
+  type shareOption = {
+    name: string,
+    link: string | Function,
+    icon: ReactElement,
+    id: number,
+  }
+  const shareOptions: shareOption[] = [
+    {
+      name: t("header.tooltip.share-options.copy"),
+      link: "",
+      icon: <BsCopy />,
+      id: 201,
+    },
+    {
+      name: t("header.tooltip.share-options.twitter"),
+      link: "",
+      icon: <BsTwitter />,
+      id: 1,
+    },
+    {
+      name: t("header.tooltip.share-options.x"),
+      link: "",
+      icon: <SiX />,
+      id: 2,
+    },
+    {
+      name: t("header.tooltip.share-options.discord"),
+      link: "",
+      icon: <SiDiscord />,
+      id: 11,
+    },
+    {
+      name: t("header.tooltip.share-options.reddit"),
+      link: "",
+      icon: <SiReddit />,
+      id: 12,
+    },
+    {
+      name: t("header.tooltip.share-options.misskey"),
+      link: "",
+      icon: <SiMisskey />,
+      id: 21,
+    },
+    {
+      name: t("header.tooltip.share-options.mastodon"),
+      link: "",
+      icon: <SiMastodon />,
+      id: 22,
+    },
+    {
+      name: t("header.tooltip.share-options.line"),
+      link: "",
+      icon: <SiLine />,
+      id: 101,
+    },
+  ]
   const [url, setUrl] = useState("https://example.com");
 
   // For menu
@@ -101,10 +164,35 @@ const Header = () => {
             ))}
           </Menu>
           <Tooltip title={t("header.tooltip.share")}>
-            <IconButton onClick={() => { }}>
+            <IconButton onClick={handleOpenShareMenu}>
               <Share />
             </IconButton>
           </Tooltip>
+          <Menu
+            sx={{ mt: '45px' }}
+            id="menu-appbar"
+            anchorEl={anchorElShare}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            open={Boolean(anchorElShare)}
+            onClose={handleCloseShareMenu}
+            disableScrollLock={true}
+          >
+            {shareOptions.map((e) => (
+              <MenuItem key={e.id} style={{ display: 'flex', gap: '10px' }} onClick={() => {
+                handleCloseLangMenu();
+              }}>
+                {e.icon}<Typography textAlign="center">{e.name}</Typography>
+              </MenuItem>
+            ))}
+          </Menu>
         </Box>
       </Container>
     </AppBar>
