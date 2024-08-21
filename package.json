@@ -30,6 +30,7 @@
     "uuid": "^10.0.0"
   },
   "devDependencies": {
+    "@modyfi/vite-plugin-yaml": "^1.1.0",
     "@types/react": "^18.2.66",
     "@types/react-color": "^3.0.12",
     "@types/react-dom": "^18.2.22",

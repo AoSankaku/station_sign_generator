@@ -1,0 +1,21 @@
+header:
+  title: "駅名標ジェネレーター 青三角版"
+input:
+  direct:
+    swaplr: "左右を入れ替える"
+    lstation: "左駅名"
+    lread: "左"
+    len: "左駅名（英語）"
+    lnum: "左駅番号"
+    station: "駅名"
+    read: "駅名（よみ）"
+    en: "駅名（英語）"
+    ch: "駅名（繁体中文）"
+    kp: "駅名（Korean）"
+    num: "駅番号"
+    trc: "スリーレターコード"
+    note: "駅情報"
+    rstation: "右駅名"
+    rlead: "Right Station Subtext"
+    ren: "Right Station Subtext"
+    rnum: "Right Station Number"

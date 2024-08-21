@@ -1,0 +1,21 @@
+header:
+  title: "Railway Sign Generator (Blue Triangle Edition)"
+input:
+  direct:
+    swaplr: "Swap left and right"
+    lstation: "Left Station Name"
+    lread: "Left Station Subtext"
+    len: "Left Station Alternative Name"
+    lnum: "Left Station Number"
+    station: "Station Name (Japanese)"
+    read: "Station Subtext"
+    en: "Station Name Second Language (English)"
+    ch: "Station Name Third Language (Chinese)"
+    kp: "Station Name Fourth Language (Korean)"
+    num: "Station Number"
+    trc: "Station Code"
+    note: "Station Note (Larger Text Below Station Name)"
+    rstation: "Right Station Name"
+    rlead: "Right Station Subtext"
+    ren: "Right Station Subtext"
+    rnum: "Right Station Number"
