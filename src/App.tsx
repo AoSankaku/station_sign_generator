@@ -8,6 +8,7 @@ import DirectInputStationProps from './components/signs/DirectInputStationProps'
 import DirectInput from './components/inputs/DirectInput';
 import InputStationInfo from './components/InputStationInfo';
 import { useTranslation } from "react-i18next"
+import { v7 as uuidv7 } from 'uuid'
 
 const App = () => {
 
@@ -30,12 +31,12 @@ const App = () => {
     stationThreeLetterCode: 'TGW',
     stationArea: [
       {
-        id: 1,
+        id: uuidv7(),
         name: "山",
         isWhite: true,
       },
       {
-        id: 2,
+        id: uuidv7(),
         name: "区",
         isWhite: false,
       }

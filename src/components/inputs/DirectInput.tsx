@@ -12,6 +12,7 @@ import { SketchPicker } from 'react-color'
 import DirectInputStationProps from '../signs/DirectInputStationProps';
 import { useTranslation } from "react-i18next"
 import styled from 'styled-components';
+import { v7 as uuidv7 } from 'uuid'
 
 interface DirectInputStationPropsWithHandleChange extends DirectInputStationProps {
   //for update
@@ -132,7 +133,7 @@ const DirectInput: React.FC<DirectInputStationPropsWithHandleChange> = (props) =
               updateCurrentData("stationArea", props.stationArea ? [
                 ...props.stationArea,
                 {
-                  id: Date.now() - 1723600000000,
+                  id: uuidv7(),
                   name: "",
                   isWhite: true,
                 }

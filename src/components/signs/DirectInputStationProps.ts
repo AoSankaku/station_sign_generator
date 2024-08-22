@@ -2,7 +2,7 @@ import { RefObject } from "react";
 import Konva from "konva";
 
 type StationArea = {
-  id: number;
+  id: string;
   name: string;
   isWhite?: boolean;
 }
