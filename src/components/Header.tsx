@@ -162,6 +162,13 @@ const Header = () => {
             {langs.map((e) => (
               <MenuItem key={e.lang} style={{ display: 'flex', gap: '10px' }} onClick={() => {
                 i18n.changeLanguage(e.lang);
+                const baseUrl = new URL(url)
+                if (e.lang !== 'ja') {
+                  baseUrl.searchParams.set('lang', e.lang)
+                } else {
+                  baseUrl.searchParams.delete('lang')
+                }
+                window.history.pushState({}, '', baseUrl)
                 handleCloseLangMenu();
               }}>
                 {e.flag}<Typography textAlign="center">{e.langName}</Typography>
