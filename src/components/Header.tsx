@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next"
 import { AppBar, Container, IconButton, Tooltip, Box, Menu, Typography, MenuItem } from "@mui/material";
 import { Share } from "@mui/icons-material";
-import styled from "styled-components";
 import TrainIcon from '@mui/icons-material/Train';
 import { JP, US } from "country-flag-icons/react/3x2";
 import { ReactElement, useEffect, useState } from "react";
@@ -125,15 +124,16 @@ const Header = () => {
 
   return (
     <AppBar>
-      <Container maxWidth="xl" style={{ display: 'flex', alignItems: 'center' }}>
-        <Box sx={{ flexGrow: 1 }}>
-          <HeaderText>
-            <TrainIcon sx={{ display: 'flex', mr: 1 }} />{t("header.title")}
-          </HeaderText>
+      <Container maxWidth="xl" style={{ display: 'flex', alignItems: 'center', height: '64px' }} sx={{ padding: { xs: '0', sm: '0 24px' } }}>
+        <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', padding: { xs: '8px', sm: '0' } }}>
+          <TrainIcon sx={{ display: 'flex', mr: 1 }} />
+          <Typography variant="h1" sx={{ fontSize: { xs: '14px', sm: '16px' }, padding: { xs: '4px', sm: '10px' }, whiteSpace: 'pre-wrap', wordBreak: 'keep-all' }}>
+            {t("header.title")}
+          </Typography>
         </Box>
-        <Box sx={{ flexGrow: 0 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
           <Tooltip title={t("header.tooltip.lang")}>
-            <IconButton style={{ width: '2em' }} onClick={handleOpenLangMenu}>
+            <IconButton sx={{ width: { xs: '40px', sm: '2em' } }} onClick={handleOpenLangMenu}>
               <Flag country={(i18n.language === 'ja' || i18n.language === 'en') ? i18n.language : 'en'} />
             </IconButton>
           </Tooltip>
@@ -164,7 +164,7 @@ const Header = () => {
             ))}
           </Menu>
           <Tooltip title={t("header.tooltip.share")}>
-            <IconButton onClick={handleOpenShareMenu}>
+            <IconButton sx={{ width: { xs: '40px', sm: '2em' } }} onClick={handleOpenShareMenu}>
               <Share />
             </IconButton>
           </Tooltip>
@@ -198,12 +198,5 @@ const Header = () => {
     </AppBar>
   )
 }
-
-const HeaderText = styled.h1`
-  font-size: 16px;
-  padding: 10px;
-  display: flex;
-  align-content: center;
-`
 
 export default Header
