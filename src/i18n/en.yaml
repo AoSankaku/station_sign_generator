@@ -12,6 +12,8 @@ header:
       reddit: Reddit
       line: LINE
       copy: Copy URL
+    copy: Copied URL to your clipboard.
+    share-message: Use {{name}} to generate great railway signs!
 input:
   direct:
     swaplr: "Swap left and right"

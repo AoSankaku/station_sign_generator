@@ -12,6 +12,8 @@ header:
       reddit: Reddit
       line: LINE
       copy: URLをコピー
+    copy: URLをクリップボードにコピーしました！
+    share-message: 「{{name}}」で駅名標をサクッと作ろう！
 input:
   direct:
     swaplr: "左右を入れ替える"

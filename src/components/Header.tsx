@@ -1,11 +1,11 @@
 import { useTranslation } from "react-i18next"
-import { AppBar, Container, IconButton, Tooltip, Box, Menu, Typography, MenuItem } from "@mui/material";
+import { AppBar, Container, IconButton, Tooltip, Box, Menu, Typography, MenuItem, Alert, Snackbar } from "@mui/material";
 import { Share } from "@mui/icons-material";
 import TrainIcon from '@mui/icons-material/Train';
 import { JP, US } from "country-flag-icons/react/3x2";
 import { ReactElement, useEffect, useState } from "react";
 import { BsTwitter, BsCopy } from "react-icons/bs";
-import { SiMisskey, SiDiscord, SiMastodon, SiLine, SiX, SiReddit } from "react-icons/si";
+import { SiMisskey, SiMastodon, SiLine, SiX, SiReddit } from "react-icons/si";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -26,63 +26,74 @@ const Header = () => {
       flag: <US style={{ width: '2em' }} />
     },
   ];
+
+  const [url, setUrl] = useState("https://example.com");
+  useEffect(() => {
+    const { URL } = document
+    setUrl(URL)
+  })
+  const shareText = t("header.tooltip.share-message", { name: t("header.title") })
+  const encodedShareText = encodeURIComponent(shareText);
   type shareOption = {
     name: string,
     link: string | Function,
     icon: ReactElement,
     id: number,
+    // message?: string,
   }
   const shareOptions: shareOption[] = [
     {
       name: t("header.tooltip.share-options.copy"),
-      link: "",
+      link: () => navigator.clipboard.writeText(`${shareText}\n${url}`),
       icon: <BsCopy />,
       id: 201,
+      // message: t("header.tooltip.copy"),
     },
     {
       name: t("header.tooltip.share-options.twitter"),
-      link: "",
+      link: `https://x.com/share?text=${encodedShareText}&url=${url}`,
       icon: <BsTwitter />,
       id: 1,
     },
     {
       name: t("header.tooltip.share-options.x"),
-      link: "",
+      link: `https://x.com/share?text=${encodedShareText}&url=${url}`,
       icon: <SiX />,
       id: 2,
     },
     {
-      name: t("header.tooltip.share-options.discord"),
-      link: "",
-      icon: <SiDiscord />,
-      id: 11,
-    },
-    {
       name: t("header.tooltip.share-options.reddit"),
-      link: "",
+      link: `https://www.reddit.com/submit?text=${encodedShareText}&url=${url}`,
       icon: <SiReddit />,
       id: 12,
     },
     {
       name: t("header.tooltip.share-options.misskey"),
-      link: "",
+      link: `https://misskey-hub.net/share/?text=${encodedShareText}&url=${url}&visibility=public&localOnly=0`,
       icon: <SiMisskey />,
       id: 21,
     },
     {
       name: t("header.tooltip.share-options.mastodon"),
-      link: "",
+      link: `https://donshare.net/share.html?text=${encodedShareText}&url=${url}`,
       icon: <SiMastodon />,
       id: 22,
     },
     {
       name: t("header.tooltip.share-options.line"),
-      link: "",
+      link: `https://social-plugins.line.me/lineit/share?text=${encodedShareText}&url=${url}`,
       icon: <SiLine />,
       id: 101,
     },
   ]
-  const [url, setUrl] = useState("https://example.com");
+
+  const [isCopyMessageOpen, setIsCopyMessageOpen] = useState(false)
+  const openCopyMessage = () => {
+    setIsCopyMessageOpen(true);
+  }
+  const handleCopyMessageClose = () => {
+    setIsCopyMessageOpen(false);
+  };
 
   // For menu
   const [anchorElLang, setAnchorElLang] = useState<null | HTMLElement>(null);
@@ -103,12 +114,6 @@ const Header = () => {
   const handleCloseShareMenu = () => {
     setAnchorElShare(null);
   };
-
-
-
-  useEffect(() => {
-    setUrl(document.URL)
-  })
 
   interface FlagProps {
     country: 'ja' | 'en';
@@ -187,7 +192,13 @@ const Header = () => {
           >
             {shareOptions.map((e) => (
               <MenuItem key={e.id} style={{ display: 'flex', gap: '10px' }} onClick={() => {
-                handleCloseLangMenu();
+                handleCloseShareMenu();
+                if (typeof (e.link) === 'string') {
+                  window.open(e.link, '_blank');
+                } else {
+                  openCopyMessage();
+                  e.link()
+                }
               }}>
                 {e.icon}<Typography textAlign="center">{e.name}</Typography>
               </MenuItem>
@@ -195,6 +206,16 @@ const Header = () => {
           </Menu>
         </Box>
       </Container>
+      <Snackbar open={isCopyMessageOpen} autoHideDuration={6000} onClose={handleCopyMessageClose}>
+        <Alert
+          onClose={handleCopyMessageClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: '100%' }}
+        >
+          {t("header.tooltip.copy")}
+        </Alert>
+      </Snackbar>
     </AppBar>
   )
 }
