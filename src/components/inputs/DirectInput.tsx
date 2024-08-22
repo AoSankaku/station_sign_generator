@@ -85,33 +85,33 @@ const DirectInput: React.FC<DirectInputStationPropsWithHandleChange> = (props) =
       <Grid container direction="row" style={{ ...basicGridStyle, justifyContent: 'center' }} spacing={2}>
         <Grid item xs={10} md={3}>
           <Stack spacing={3}>
-            <InputHead><KeyboardDoubleArrowLeftIcon />左駅の情報</InputHead>
-            <TextField name="leftStationName" label="左駅名" variant="outlined" value={props.leftStationName} onChange={props.onChange} />
-            <TextField name="leftStationNameFurigana" label="左駅名（よみがな）" variant="outlined" value={props.leftStationNameFurigana} onChange={props.onChange} />
-            <TextField name="leftStationNameEnglish" label="左駅名（英語）" variant="outlined" value={props.leftStationNameEnglish} onChange={props.onChange} />
-            <TextField name="leftStationNumber" label="左駅ナンバリング" variant="outlined" value={props.leftStationNumber} onChange={props.onChange} />
+            <InputHead><KeyboardDoubleArrowLeftIcon />{t("input.direct.input-left")}</InputHead>
+            <TextField name="leftStationName" label={t("input.direct.lstation")} variant="outlined" value={props.leftStationName} onChange={props.onChange} />
+            <TextField name="leftStationNameFurigana" label={t("input.direct.lread")} variant="outlined" value={props.leftStationNameFurigana} onChange={props.onChange} />
+            <TextField name="leftStationNameEnglish" label={t("input.direct.len")} variant="outlined" value={props.leftStationNameEnglish} onChange={props.onChange} />
+            <TextField name="leftStationNumber" label={t("input.direct.lnum")} variant="outlined" value={props.leftStationNumber} onChange={props.onChange} />
           </Stack>
         </Grid>
         <Grid item xs={10} md={3}>
           <Stack spacing={3}>
-            <InputHead><DirectionsRailwayIcon />この駅の情報</InputHead>
-            <TextField name="stationName" label="駅名" variant="outlined" value={props.stationName} onChange={props.onChange} />
-            <TextField name="stationNameFurigana" label="駅名（ふりがな）" variant="outlined" value={props.stationNameFurigana} onChange={props.onChange} />
-            <TextField name="stationNameEnglish" label="駅名（英語）" variant="outlined" value={props.stationNameEnglish} onChange={props.onChange} />
-            <TextField name="stationNameChinese" label="駅名（繁体中文）" variant="outlined" value={props.stationNameChinese} onChange={props.onChange} />
-            <TextField name="stationNameKorean" label="駅名（한국어）" variant="outlined" value={props.stationNameKorean} onChange={props.onChange} />
-            <TextField name="stationNumber" label="駅ナンバリング" variant="outlined" value={props.stationNumber} onChange={props.onChange} />
-            <TextField name="stationThreeLetterCode" label="スリーレターコード" variant="outlined" value={props.stationThreeLetterCode} onChange={props.onChange} />
-            <TextField name="stationNote" label="駅補足" variant="outlined" value={props.stationNote} onChange={props.onChange} />
+            <InputHead><DirectionsRailwayIcon />{t("input.direct.input-current")}</InputHead>
+            <TextField name="stationName" label={t("input.direct.station")} variant="outlined" value={props.stationName} onChange={props.onChange} />
+            <TextField name="stationNameFurigana" label={t("input.direct.read")} variant="outlined" value={props.stationNameFurigana} onChange={props.onChange} />
+            <TextField name="stationNameEnglish" label={t("input.direct.en")} variant="outlined" value={props.stationNameEnglish} onChange={props.onChange} />
+            <TextField name="stationNameChinese" label={t("input.direct.ch")} variant="outlined" value={props.stationNameChinese} onChange={props.onChange} />
+            <TextField name="stationNameKorean" label={t("input.direct.kp")} variant="outlined" value={props.stationNameKorean} onChange={props.onChange} />
+            <TextField name="stationNumber" label={t("input.direct.num")} variant="outlined" value={props.stationNumber} onChange={props.onChange} />
+            <TextField name="stationThreeLetterCode" label={t("input.direct.trc")} variant="outlined" value={props.stationThreeLetterCode} onChange={props.onChange} />
+            <TextField name="stationNote" label={t("input.direct.note")} variant="outlined" value={props.stationNote} onChange={props.onChange} />
           </Stack>
         </Grid>
         <Grid item xs={10} md={3}>
           <Stack spacing={3}>
-            <InputHead>右駅の情報<KeyboardDoubleArrowRightIcon /></InputHead>
-            <TextField name="rightStationName" label="右駅名" variant="outlined" value={props.rightStationName} onChange={props.onChange} />
-            <TextField name="rightStationNameFurigana" label="右駅名（ふりがな）" variant="outlined" value={props.rightStationNameFurigana} onChange={props.onChange} />
-            <TextField name="rightStationNameEnglish" label="右駅名（英語）" variant="outlined" value={props.rightStationNameEnglish} onChange={props.onChange} />
-            <TextField name="rightStationNumber" label="右駅ナンバリング" variant="outlined" value={props.rightStationNumber} onChange={props.onChange} />
+            <InputHead>{t("input.direct.input-right")}<KeyboardDoubleArrowRightIcon /></InputHead>
+            <TextField name="rightStationName" label={t("input.direct.rstation")} variant="outlined" value={props.rightStationName} onChange={props.onChange} />
+            <TextField name="rightStationNameFurigana" label={t("input.direct.rread")} variant="outlined" value={props.rightStationNameFurigana} onChange={props.onChange} />
+            <TextField name="rightStationNameEnglish" label={t("input.direct.ren")} variant="outlined" value={props.rightStationNameEnglish} onChange={props.onChange} />
+            <TextField name="rightStationNumber" label={t("input.direct.rnum")} variant="outlined" value={props.rightStationNumber} onChange={props.onChange} />
           </Stack>
         </Grid>
       </Grid>
@@ -139,7 +139,7 @@ const DirectInput: React.FC<DirectInputStationPropsWithHandleChange> = (props) =
                 }
               ] : undefined)
             }}>追加</Button>
-            <List subheader={<ListSubheader>特定都区市内</ListSubheader>}>
+            <List subheader={<ListSubheader>{t("input.direct.area")}</ListSubheader>}>
               {props.stationArea?.map((e) => {
                 return (
                   <ListItem
@@ -152,7 +152,7 @@ const DirectInput: React.FC<DirectInputStationPropsWithHandleChange> = (props) =
                       </IconButton>
                     }
                   >
-                    <TextField label="名称" variant='standard' value={e.name} onChange={(i) => {
+                    <TextField label={t("input.direct.area-name")} variant='standard' value={e.name} onChange={(i) => {
                       const nextStationArea = props.stationArea?.map((c) => {
                         if (e.id === c.id) {
                           return ({

@@ -140,7 +140,7 @@ const App = () => {
         direction={currentData.direction}
         ref={ref}
       />
-      <Button variant="contained" onClick={() => handleSave()}><Download />save</Button>
+      <Button variant="contained" onClick={() => handleSave()}><Download />{t("input.save")}</Button>
       <DirectInput {...currentData} onChange={handleChangeDirect} />
       <InputStationInfo text={test.text} text2={test.text2} onChange={handleChangeTest} />
     </>

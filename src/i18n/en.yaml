@@ -15,13 +15,14 @@ header:
     copy: Copied URL to your clipboard.
     share-message: Use {{name}} to generate great railway signs!
 input:
+  save: Save as Image
   direct:
     swaplr: "Swap left and right"
     lstation: "Left Station Name"
     lread: "Left Station Subtext"
     len: "Left Station Alternative Name"
     lnum: "Left Station Number"
-    station: "Station Name (Japanese)"
+    station: "Station Name"
     read: "Station Subtext"
     en: "Station Name Second Language (English)"
     ch: "Station Name Third Language (Chinese)"
@@ -33,5 +34,12 @@ input:
     rread: "Right Station Subtext"
     ren: "Right Station Subtext"
     rnum: "Right Station Number"
+    input-left: "Left Station Info"
+    input-current: "Current Station Info"
+    input-right: "Right Station Info"
+    area: Station Fare Area
+    area-name: Area Name
+common:
+  add: Add
 error:
   on-save: "Function handleSave failed. This is completely unexpected behavior as the canvas is always rendered."
