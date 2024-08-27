@@ -1,3 +1,7 @@
+meta:
+  title: 駅名標ジェネレーター 青三角版 JR東日本
+  description: 駅名標の画像を生成できます。今後他の種類の駅名標の作成にも対応予定です。
+
 header:
   title: 駅名標ジェネレーター 青三角版
   tooltip:
@@ -14,6 +18,7 @@ header:
       copy: URLをコピー
     copy: URLをクリップボードにコピーしました！
     share-message: 「{{name}}」で駅名標をサクッと作ろう！
+
 input:
   save: 画像として保存
   direct:
@@ -39,7 +44,9 @@ input:
     input-right: "右駅の情報"
     area: "特定都区市内"
     area-name: 区域名称
+
 common:
   add: 追加
+
 error:
   on-save: 保存に失敗しました。駅名標の表示があるにも関わらずこのエラーが出た場合、予期せぬ不具合ですので開発者に報告してください。

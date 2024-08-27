@@ -1,3 +1,7 @@
+meta:
+  title: Railway Sign Generator Blue Triangle Edition (JR East style)
+  description: A useful tool for generating railway station name signs.
+
 header:
   title: "Railway Sign Generator (Blue Triangle Edition)"
   tooltip:
@@ -39,7 +43,9 @@ input:
     input-right: "Right Station Info"
     area: Station Fare Area
     area-name: Area Name
+
 common:
   add: Add
+
 error:
   on-save: "Function handleSave failed. This is completely unexpected behavior as the canvas is always rendered."
