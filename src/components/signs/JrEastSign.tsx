@@ -11,6 +11,8 @@ import { isMobile } from "react-device-detect"
 import '../../assets/css/fonts.css'
 import styled from "styled-components"
 
+export const height = 140;
+
 const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<Konva.Stage>) => {
 
   // font importer memo
@@ -26,7 +28,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
       default: return str;
     }
   })();
-  const height = 140;
+  //const height = 140;
   const width = height * ratio;
   const yOffset = 6;
   const startingPoint = 40;
@@ -219,7 +221,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
         </Layer>
       </Stage>
       <Overlay />
-      <img src="temp\test.jpg" width={720} />
+      {/*<img src="temp\nottest.jpg" width={720} />*/}
     </StageWrapper>
   )
 })

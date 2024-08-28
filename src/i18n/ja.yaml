@@ -24,6 +24,7 @@ header:
 
 input:
   save: 画像として保存
+  image-size: 画像の大きさ
   direct:
     swaplr: "左右を入れ替える"
     lstation: "左駅名"
