@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
 import { Button, Toolbar } from '@mui/material'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import JrEastSign from './components/signs/JrEastSign'
 import { Download } from '@mui/icons-material';
 import Konva from 'konva';
@@ -143,6 +144,7 @@ const App = () => {
       <Button variant="contained" onClick={() => handleSave()}><Download />{t("input.save")}</Button>
       <DirectInput {...currentData} onChange={handleChangeDirect} />
       <InputStationInfo text={test.text} text2={test.text2} onChange={handleChangeTest} />
+      <Footer />
     </>
   )
 }
