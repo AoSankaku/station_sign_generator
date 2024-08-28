@@ -1,6 +1,5 @@
 import { useState, useEffect, forwardRef } from "react"
 import StationProps from "./DirectInputStationProps"
-
 import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import Konva from "konva"
 import processStationNumber from "../../functions/processStationNumber"
@@ -19,7 +18,30 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   // const font = new FontFace('CustomFont', 'url(/path/to/font.woff2)');
   //const stageRef = useRef<Konva.Stage>(null)
 
-  const { stationName, stationNameEnglish, stationNameFurigana, stationNameChinese, stationNameKorean, stationNote, stationArea, leftStationName, leftStationNameEnglish, leftStationNumber, rightStationName, rightStationNameEnglish, rightStationNumber, stationNumber, stationThreeLetterCode, baseColor, lineColor, direction, ratio } = props
+  const {
+    stationName,
+    stationNameEnglish,
+    stationNameFurigana,
+    stationNameChinese,
+    stationNameKorean,
+    stationNote,
+    stationArea,
+    leftStationName,
+    leftStationNameEnglish,
+    leftStationNumberPrimary,
+    leftStationNumberSecondary,
+    rightStationName,
+    rightStationNameEnglish,
+    rightStationNumberPrimary,
+    rightStationNumberSecondary,
+    stationNumberPrimary,
+    stationNumberSecondary,
+    stationThreeLetterCode,
+    baseColor,
+    lineColor,
+    direction,
+    ratio
+  } = props
   const spacedStationName = (() => {
     const str = stationName;
     switch (str.length) {
@@ -34,9 +56,12 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const startingPoint = 40;
   const lineHeight = 24
   const linePosY = 70 + yOffset
-  const processedStationNumber = stationNumber ? processStationNumber(stationNumber[0]) : {}
-  const processedLeftStationNumber = leftStationNumber ? processStationNumber(leftStationNumber) : {}
-  const processedRightStationNumber = rightStationNumber ? processStationNumber(rightStationNumber) : {}
+  const processedStationNumberPrimary = stationNumberPrimary ? processStationNumber(stationNumberPrimary) : {}
+  const processedStationNumberSecondary = stationNumberSecondary ? processStationNumber(stationNumberSecondary) : {}
+  const processedLeftStationNumberPrimary = leftStationNumberPrimary ? processStationNumber(leftStationNumberPrimary) : {}
+  const processedLeftStationNumberSecondary = leftStationNumberSecondary ? processStationNumber(leftStationNumberSecondary) : {}
+  const processedRightStationNumberPrimary = rightStationNumberPrimary ? processStationNumber(rightStationNumberPrimary) : {}
+  const processedRightStationNumberSecondary = rightStationNumberSecondary ? processStationNumber(rightStationNumberSecondary) : {}
   // const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [stageKey, setStageKey] = useState(0)
   const [windowWidth, windowHeight] = useWindowSize();
@@ -131,11 +156,18 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
             <>
               <Text text={leftStationNameEnglish} width={width} x={64} y={yOffset + 98} fontSize={13} fontFamily='OverusedGrotesk' fill='black' align='left' />
               <Text text={autoSpace(leftStationName)} width={width} x={60} y={yOffset + 72} fontSize={21} fontStyle='400' fontFamily='NotoSansJP' fill='white' align='left' />
-              {leftStationNumber &&
+              {leftStationNumberPrimary &&
                 <>
                   <Rect stroke={lineColor} strokeWidth={2} x={44} y={yOffset + 97} width={15} height={15} cornerRadius={2} />
-                  <Text text={processedLeftStationNumber.prefix} fill='black' x={41.5} fontSize={6} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 99} width={20} height={30} align="center" />
-                  <Text text={processedLeftStationNumber.number} fill='black' x={41.5} fontSize={9} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 104} width={20} height={32} align="center" />
+                  <Text text={processedLeftStationNumberPrimary.prefix} fill='black' x={41.5} fontSize={6} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 99} width={20} height={30} align="center" />
+                  <Text text={processedLeftStationNumberPrimary.number} fill='black' x={41.5} fontSize={9} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 104} width={20} height={32} align="center" />
+                </>
+              }
+              {leftStationNumberSecondary &&
+                <>
+                  <Rect stroke={lineColor} strokeWidth={2} x={24} y={yOffset + 97} width={15} height={15} cornerRadius={2} />
+                  <Text text={processedLeftStationNumberSecondary.prefix} fill='black' x={21.5} fontSize={6} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 99} width={20} height={30} align="center" />
+                  <Text text={processedLeftStationNumberSecondary.number} fill='black' x={21.5} fontSize={9} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 104} width={20} height={32} align="center" />
                 </>
               }
             </>
@@ -145,11 +177,18 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
             <>
               <Text text={autoSpace(rightStationName)} width={width} x={-60} y={yOffset + 72} fontSize={21} fontStyle='400' fontFamily='NotoSansJP' fill='white' align='right' />
               <Text text={rightStationNameEnglish} width={width} x={-66} y={yOffset + 98} fontSize={13} fontFamily='OverusedGrotesk' fill='black' align='right' />
-              {rightStationNumber &&
+              {rightStationNumberPrimary &&
                 <>
                   <Rect stroke={lineColor} strokeWidth={2} x={width - 60} y={yOffset + 97} width={15} height={15} cornerRadius={2} />
-                  <Text text={processedRightStationNumber.prefix} fill='black' x={width - 62.5} fontSize={6} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 99} width={20} height={30} align="center" />
-                  <Text text={processedRightStationNumber.number} fill='black' x={width - 62.5} fontSize={9} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 104} width={20} height={32} align="center" />
+                  <Text text={processedRightStationNumberPrimary.prefix} fill='black' x={width - 62.5} fontSize={6} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 99} width={20} height={30} align="center" />
+                  <Text text={processedRightStationNumberPrimary.number} fill='black' x={width - 62.5} fontSize={9} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 104} width={20} height={32} align="center" />
+                </>
+              }
+              {rightStationNumberSecondary &&
+                <>
+                  <Rect stroke={lineColor} strokeWidth={2} x={width - 40} y={yOffset + 97} width={15} height={15} cornerRadius={2} />
+                  <Text text={processedRightStationNumberSecondary.prefix} fill='black' x={width - 42.5} fontSize={6} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 99} width={20} height={30} align="center" />
+                  <Text text={processedRightStationNumberSecondary.number} fill='black' x={width - 42.5} fontSize={9} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + 104} width={20} height={32} align="center" />
                 </>
               }
             </>
@@ -176,7 +215,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
           }
 
           {/* If station number exists */}
-          {processedStationNumber.prefix &&
+          {processedStationNumberPrimary.prefix &&
             (stationThreeLetterCode ?
               <>
                 <Rect stroke={lineColor} strokeWidth={3} x={xOffsetWithNote + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 29} width={30} height={30} cornerRadius={2} />
@@ -186,15 +225,40 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
                 <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 20} width={36} height={42} cornerRadius={4} />
                 <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 18} width={36} height={44} cornerRadius={4} />
                 <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 17} width={36} height={45} cornerRadius={4} />
-                <Text text={stationThreeLetterCode} fill='white' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={12.2} fontFamily={'HindSemiBold'} fontStyle="800" y={yOffset + yOffsetWithNote + 18} width={30} height={30} align="center" />
-                <Text text={processedStationNumber.prefix} fill='black' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 33} width={30} height={30} align="center" />
-                <Text text={processedStationNumber.number} fill='black' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 43} width={30} height={32} align="center" />
+                {processedStationNumberSecondary.prefix ?
+                  <>
+                    <Rect stroke={lineColor} strokeWidth={3} x={xOffsetWithNote - 36 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 29} width={30} height={30} cornerRadius={2} />
+                    <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 - 36 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 26} width={36} height={36} cornerRadius={5} />
+                    <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 - 36 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 24} width={36} height={38} cornerRadius={4} />
+                    <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 - 36 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 22} width={36} height={40} cornerRadius={4} />
+                    <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 - 36 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 20} width={36} height={42} cornerRadius={4} />
+                    <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 - 36 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 18} width={36} height={44} cornerRadius={4} />
+                    <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 - 36 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 17} width={36} height={45} cornerRadius={4} />
+                    <Rect stroke='black' strokeWidth={3} x={xOffsetWithNote - 3 - 36 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 17} width={72} height={45} cornerRadius={4} />
+                    <Text text={stationThreeLetterCode} fill='white' x={xOffsetWithNote - 36 + (width - stationNameWidth) / 2} fontSize={12.2} fontFamily={'HindSemiBold'} fontStyle="800" y={yOffset + yOffsetWithNote + 18} width={66} height={30} align="center" />
+                    <Text text={processedStationNumberSecondary.prefix} fill='black' x={xOffsetWithNote - 36 + (width - stationNameWidth) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 33} width={30} height={30} align="center" />
+                    <Text text={processedStationNumberSecondary.number} fill='black' x={xOffsetWithNote - 36 + (width - stationNameWidth) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 43} width={30} height={32} align="center" />
+                  </>
+                  :
+                  <>
+                    <Text text={stationThreeLetterCode} fill='white' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={12.2} fontFamily={'HindSemiBold'} fontStyle="800" y={yOffset + yOffsetWithNote + 18} width={30} height={30} align="center" />
+                  </>
+                }
+                <Text text={processedStationNumberPrimary.prefix} fill='black' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 33} width={30} height={30} align="center" />
+                <Text text={processedStationNumberPrimary.number} fill='black' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 43} width={30} height={32} align="center" />
               </>
               :
               <>
                 <Rect stroke={lineColor} strokeWidth={3} x={xOffsetWithNote + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 18} width={30} height={30} cornerRadius={2} />
-                <Text text={processedStationNumber.prefix} fill='black' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 22} width={30} height={30} align="center" />
-                <Text text={processedStationNumber.number} fill='black' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 32} width={30} height={32} align="center" />
+                <Text text={processedStationNumberPrimary.prefix} fill='black' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 22} width={30} height={30} align="center" />
+                <Text text={processedStationNumberPrimary.number} fill='black' x={xOffsetWithNote + (width - stationNameWidth) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 32} width={30} height={32} align="center" />
+                {processedStationNumberSecondary.prefix &&
+                  <>
+                    <Rect stroke={lineColor} strokeWidth={3} x={xOffsetWithNote - 37 + (width - stationNameWidth) / 2} y={yOffset + yOffsetWithNote + 18} width={30} height={30} cornerRadius={2} />
+                    <Text text={processedStationNumberSecondary.prefix} fill='black' x={xOffsetWithNote - 37 + (width - stationNameWidth) / 2} fontSize={11} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 22} width={30} height={30} align="center" />
+                    <Text text={processedStationNumberSecondary.number} fill='black' x={xOffsetWithNote - 37 + (width - stationNameWidth) / 2} fontSize={17} fontFamily={'HindSemiBold'} fontStyle="600" y={yOffset + yOffsetWithNote + 32} width={30} height={32} align="center" />
+                  </>
+                }
               </>
             )
           }

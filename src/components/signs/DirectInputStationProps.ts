@@ -18,19 +18,22 @@ interface DirectInputStationProps {
   stationNameEnglish: string;
   stationNameKorean?: string;
   stationNameChinese?: string;
-  stationNumber?: string[];
+  stationNumberPrimary?: string;
+  stationNumberSecondary?: string;
   stationThreeLetterCode?: string;
   stationArea?: StationArea[];
   //right
   rightStationName: string;
   rightStationNameEnglish: string;
   rightStationNameFurigana?: string;
-  rightStationNumber?: string;
+  rightStationNumberPrimary?: string;
+  rightStationNumberSecondary?: string;
   //left
   leftStationName: string;
   leftStationNameEnglish: string;
   leftStationNameFurigana?: string;
-  leftStationNumber?: string;
+  leftStationNumberPrimary?: string;
+  leftStationNumberSecondary?: string;
   //misc
   lineColor: string;
   baseColor: string;

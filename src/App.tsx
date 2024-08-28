@@ -22,13 +22,15 @@ const App = () => {
     leftStationName: '品川',
     leftStationNameFurigana: 'しながわ',
     leftStationNameEnglish: 'Shinagawa',
-    leftStationNumber: 'JY25',
+    leftStationNumberPrimary: 'JY25',
+    leftStationNumberSecondary: '',
     stationName: '高輪ゲートウェイ',
     stationNameFurigana: 'たかなわげーとうぇい',
     stationNameEnglish: 'Takanawa Gateway',
     stationNameChinese: '高轮Gateway',
     stationNameKorean: '다카나와 게이트웨이',
-    stationNumber: ['JY26'],
+    stationNumberPrimary: 'JY26',
+    stationNumberSecondary: '',
     stationThreeLetterCode: 'TGW',
     stationArea: [
       {
@@ -46,7 +48,8 @@ const App = () => {
     rightStationName: '田町',
     rightStationNameFurigana: 'たまち',
     rightStationNameEnglish: 'Tamachi',
-    rightStationNumber: 'JY27',
+    rightStationNumberPrimary: 'JY27',
+    rightStationNumberSecondary: '',
     ratio: 4.5,
     direction: 'left',
     baseColor: '#36ab33',
@@ -157,16 +160,19 @@ const App = () => {
         stationNameEnglish={currentData.stationNameEnglish}
         stationNameChinese={currentData.stationNameChinese}
         stationNameKorean={currentData.stationNameKorean}
-        stationNumber={currentData.stationNumber}
+        stationNumberPrimary={currentData.stationNumberPrimary}
+        stationNumberSecondary={currentData.stationNumberSecondary}
         stationThreeLetterCode={currentData.stationThreeLetterCode}
         stationArea={currentData.stationArea}
         stationNote={currentData.stationNote}
         leftStationName={currentData.leftStationName}
         leftStationNameEnglish={currentData.leftStationNameEnglish}
-        leftStationNumber={currentData.leftStationNumber}
+        leftStationNumberPrimary={currentData.leftStationNumberPrimary}
+        leftStationNumberSecondary={currentData.leftStationNumberSecondary}
         rightStationName={currentData.rightStationName}
         rightStationNameEnglish={currentData.rightStationNameEnglish}
-        rightStationNumber={currentData.rightStationNumber}
+        rightStationNumberPrimary={currentData.rightStationNumberPrimary}
+        rightStationNumberSecondary={currentData.rightStationNumberSecondary}
         lineColor={currentData.lineColor}
         baseColor={currentData.baseColor}
         ratio={currentData.ratio}
