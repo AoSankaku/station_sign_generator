@@ -26,8 +26,8 @@ input:
   save: 画像として保存
   direct:
     swaplr: "左右を入れ替える"
-    lstation: "左駅名（ひらがな）"
-    lread: "左"
+    lstation: "左駅名"
+    lread: "左駅名（ひらがな）"
     len: "左駅名（英語）"
     lnum: "左駅番号"
     station: "駅名"
