@@ -1,6 +1,9 @@
 meta:
   title: 駅名標ジェネレーター 青三角版 JR東日本
   description: 駅名標の画像を生成できます。今後他の種類の駅名標の作成にも対応予定です。
+  pwa: 
+    name: 駅名標ジェネレーター 青三角版
+    short-name: 駅名標
 
 header:
   title: 駅名標ジェネレーター 青三角版
