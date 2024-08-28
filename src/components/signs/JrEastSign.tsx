@@ -37,7 +37,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const processedRightStationNumber = rightStationNumber ? processStationNumber(rightStationNumber) : {}
   // const [isFontLoaded, setIsFontLoaded] = useState(false)
   const [stageKey, setStageKey] = useState(0)
-  const [windowWidth] = useWindowSize();
+  const [windowWidth, windowHeight] = useWindowSize();
   const zoomSize = useZoomSize();
   const reversedStationArea = stationArea ? [...stationArea].reverse() : undefined;
 
@@ -91,11 +91,18 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const xOffsetWithNote = stationNote ? -38 : -45;
   const yOffsetWithNote = stationNote ? (stationThreeLetterCode ? -14 : -9) : 0;
 
-  const scale = isMobile ? (windowWidth / width) : (windowWidth / width * zoomSize);
+  //実際に描画する縦の高さ（height*scale）は、画面の高さの20％を超えないようにする
+  const baseScale = isMobile ? (windowWidth / width) : (windowWidth / width * zoomSize)
+  const scale = baseScale * ((height * baseScale >= windowHeight * 0.2) ? windowHeight * 0.2 / height / baseScale : 1);
 
   return (
     <StageWrapper>
-      <Stage width={width * scale} height={height * scale} ref={ref} key={stageKey} scaleX={scale} scaleY={scale}>
+      <Stage
+        style={{ display: "flex", justifyContent: "center" }}
+        ref={ref} key={stageKey}
+        width={width * scale} height={height * scale}
+        scaleX={scale} scaleY={scale}
+      >
         <Layer>
           <Rect fill='white' x={0} y={0} width={width} height={height} />
           <Rect fill={baseColor} x={startingPoint} y={linePosY} width={width - 80} height={lineHeight} strokeWidth={1} stroke={baseColor} />
