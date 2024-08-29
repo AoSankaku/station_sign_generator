@@ -107,11 +107,7 @@ const App = () => {
 
   const handleSave = () => {
     if (ref.current) {
-      const actualHeight = ref.current.height();
-      const canvasHeight = currentCanvasHeight;
-      const basePixelRatio = canvasHeight / actualHeight;
-      const uri = ref.current.toDataURL({ pixelRatio: basePixelRatio * saveSize });
-      console.log(uri.length, uri.length * 0.75)
+      const uri = ref.current.toDataURL({ pixelRatio: saveSize })
       // Create a link element
       const link = document.createElement('a');
       link.download = `${currentData.stationName}.png`;
