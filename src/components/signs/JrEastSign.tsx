@@ -112,7 +112,6 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const [canvasImage, setCanvasImage] = useState("")
   useEffect(() => {
     (ref && 'current' in ref && ref.current) ? setCanvasImage(ref.current.toDataURL()) : setCanvasImage("")
-    console.dir(canvasImage)
   }, [props, stageKey])
 
   return (
