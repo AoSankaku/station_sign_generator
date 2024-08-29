@@ -112,11 +112,15 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
   const [canvasImage, setCanvasImage] = useState("")
   useEffect(() => {
     (ref && 'current' in ref && ref.current) ? setCanvasImage(ref.current.toDataURL()) : setCanvasImage("")
+    console.dir(canvasImage)
   }, [props, stageKey])
 
   return (
     <>
-      <CanvasImage src={canvasImage} />
+      <CanvasImage
+        src={canvasImage}
+        style={canvasImage === "" ? { aspectRatio: `${ratio} / 1` } : {}}
+      />
       <StageWrapper hidden>
         <Stage
           style={{ display: "flex", justifyContent: "center" }}
@@ -290,8 +294,8 @@ const StageWrapper = styled.div`
 
 const CanvasImage = styled.img`
   width: 100%;
-  maxHeight: 20vh;
-  objectFit: contain;
+  max-height: 20vh;
+  object-fit: contain;
 `
 
 export default JrEastSign
