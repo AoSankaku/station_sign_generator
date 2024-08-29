@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react'
 import { Button, Grid, Toolbar, Box, Select, InputLabel, FormControl, MenuItem, SelectChangeEvent } from '@mui/material'
 import Header from './components/Header'
 import Footer from './components/Footer'
-import JrEastSign, { height as JrEastSignHeight } from './components/signs/JrEastSign'
 import { Download } from '@mui/icons-material';
 import Konva from 'konva';
 import DirectInputStationProps from './components/signs/DirectInputStationProps';
@@ -10,6 +9,9 @@ import DirectInput from './components/inputs/DirectInput';
 import InputStationInfo from './components/InputStationInfo';
 import { useTranslation } from "react-i18next"
 import { v7 as uuidv7 } from 'uuid'
+
+// You have to import height and scale for every child station sign component!!!
+import JrEastSign, { height as JrEastSignHeight, scale as JrEastSignBaseScale } from './components/signs/JrEastSign'
 
 const App = () => {
 
@@ -63,6 +65,14 @@ const App = () => {
   }
 
   const [currentStyle, setCurrentStyle] = useState("jreast");
+  // currentBaseScale depends on currentStyle
+  const [currentBaseScale, setCurrentBaseScale] = useState(1);
+  useEffect(() => {
+    switch (currentStyle) {
+      case "jreast": setCurrentBaseScale(JrEastSignBaseScale); break;
+      default: setCurrentBaseScale(1); break;
+    }
+  }, [currentStyle])
   // currentCanvasHeight depends on currentStyle
   const [currentCanvasHeight, setCurrentCanvasHeight] = useState(0);
   useEffect(() => {
@@ -73,14 +83,20 @@ const App = () => {
   }, [currentStyle])
   // We don't need useEffect here...right?
   const currentCanvasWidth = currentCanvasHeight * currentData.ratio;
-  const [saveSize, setSaveSize] = useState(3)
+  const [saveSize, setSaveSize] = useState(JrEastSignBaseScale)
   const [saveSizeList, setSaveSizeList] = useState<imageSize[]>([])
   useEffect(() => {
     const result = []
     const size = ["SS", "S", "M", "L", "XL", "XXL"]
     for (let i = 1, l = 6; i <= l; i++) {
+      console.log(uriSize, i, currentBaseScale)
       result.push({
-        label: `${currentCanvasWidth * i} × ${currentCanvasHeight * i} (${size[i - 1]})`,
+        label: `
+          ${currentCanvasWidth * i}
+           × ${currentCanvasHeight * i}
+            (${size[i - 1]})
+           - ${Math.round(uriSize * i / currentBaseScale * 0.78 / 1024 * 10) / 10}KB
+        `,
         value: i
       })
     }
@@ -105,9 +121,18 @@ const App = () => {
   }));
   */
 
+  const [uriSize, setUriSize] = useState(0)
+  useEffect(() => {
+    if (ref.current) {
+      const uri = ref.current.toDataURL({ pixelRatio: 1 })
+      const head = 'data:image/png;base64,';
+      setUriSize(uri.length - head.length)
+      console.log(uriSize)
+    }
+  }, [currentData])
   const handleSave = () => {
     if (ref.current) {
-      const uri = ref.current.toDataURL({ pixelRatio: saveSize })
+      const uri = ref.current.toDataURL({ pixelRatio: saveSize / currentBaseScale })
       // Create a link element
       const link = document.createElement('a');
       link.download = `${currentData.stationName}.png`;
@@ -177,7 +202,7 @@ const App = () => {
       />
       <Box sx={{ width: '100%', padding: '25px' }}>
         <Grid container spacing={2} style={{ padding: '10px' }}>
-          <Grid item xs={12} sm={8} lg={10}>
+          <Grid item xs={12} sm={7} lg={10}>
             <FormControl fullWidth>
               <InputLabel id='save-image-size-label'>{t("input.image-size")}</InputLabel>
               <Select labelId='save-image-size' value={saveSize} label={t("input.image-size")} onChange={(e: SelectChangeEvent<number>) => setSaveSize(e.target.value as number)}>
@@ -187,8 +212,8 @@ const App = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={4} lg={2} style={{ display: 'flex', justifyContent: 'center' }}>
-            <Button color="secondary" size="large" variant="contained" onClick={() => handleSave()} style={{ fontWeight: 700 }}><Download />{t("input.save")}</Button>
+          <Grid item xs={12} sm={5} lg={2} style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button color="secondary" size="large" variant="contained" onClick={() => handleSave()} style={{ fontWeight: 700 }}><Download style={{ marginRight: '10px' }} />{t("input.save")}</Button>
           </Grid>
         </Grid>
       </Box>

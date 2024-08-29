@@ -8,6 +8,7 @@ import '../../assets/css/fonts.css'
 import styled from "styled-components"
 
 export const height = 140;
+export const scale = 3
 
 const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<Konva.Stage>) => {
 
@@ -107,8 +108,6 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
 
   const xOffsetWithNote = stationNote ? -38 : -45;
   const yOffsetWithNote = stationNote ? (stationThreeLetterCode ? -14 : -9) : 0;
-
-  const scale = 3
 
   const [canvasImage, setCanvasImage] = useState("")
   useEffect(() => {
