@@ -16,7 +16,6 @@ import JrEastSign, { height as JrEastSignHeight, scale as JrEastSignBaseScale } 
 const App = () => {
 
   const ref = useRef<Konva.Stage>(null)
-
   const { t } = useTranslation()
 
   // Default Value - Will be replaced with LocalStorage data
@@ -176,28 +175,7 @@ const App = () => {
       <Header />
       <Toolbar />
       <JrEastSign
-        stationName={currentData.stationName}
-        stationNameFurigana={currentData.stationNameFurigana}
-        stationNameEnglish={currentData.stationNameEnglish}
-        stationNameChinese={currentData.stationNameChinese}
-        stationNameKorean={currentData.stationNameKorean}
-        stationNumberPrimary={currentData.stationNumberPrimary}
-        stationNumberSecondary={currentData.stationNumberSecondary}
-        stationThreeLetterCode={currentData.stationThreeLetterCode}
-        stationArea={currentData.stationArea}
-        stationNote={currentData.stationNote}
-        leftStationName={currentData.leftStationName}
-        leftStationNameEnglish={currentData.leftStationNameEnglish}
-        leftStationNumberPrimary={currentData.leftStationNumberPrimary}
-        leftStationNumberSecondary={currentData.leftStationNumberSecondary}
-        rightStationName={currentData.rightStationName}
-        rightStationNameEnglish={currentData.rightStationNameEnglish}
-        rightStationNumberPrimary={currentData.rightStationNumberPrimary}
-        rightStationNumberSecondary={currentData.rightStationNumberSecondary}
-        lineColor={currentData.lineColor}
-        baseColor={currentData.baseColor}
-        ratio={currentData.ratio}
-        direction={currentData.direction}
+        {...currentData}
         ref={ref}
       />
       <Box sx={{ width: '100%', padding: '25px' }}>
