@@ -58,7 +58,7 @@ const App = () => {
   });
 
 
-  type imageSize = {
+  type ImageSize = {
     label: string,
     value: number,
   }
@@ -83,7 +83,7 @@ const App = () => {
   // We don't need useEffect here...right?
   const currentCanvasWidth = currentCanvasHeight * currentData.ratio;
   const [saveSize, setSaveSize] = useState(JrEastSignBaseScale)
-  const [saveSizeList, setSaveSizeList] = useState<imageSize[]>([])
+  const [saveSizeList, setSaveSizeList] = useState<ImageSize[]>([])
   useEffect(() => {
     const result = []
     const size = ["SS", "S", "M", "L", "XL", "XXL"]
