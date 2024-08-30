@@ -138,6 +138,17 @@ const App = () => {
     }
   };
 
+  const handleChangeDirect = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    console.log(`Changing ${name} to ${value}`);
+    setCurrentData(prevData => ({
+      ...prevData,
+      [name]: value,
+    }));
+    console.dir(currentData);
+  };
+
+  // =====test=====
   const [test, setTest] = useState({
     text: "あいうえお",
     text2: "かきくけこ",
@@ -152,17 +163,7 @@ const App = () => {
     });
     console.dir(test);
   };
-
-
-  const handleChangeDirect = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    console.log(`Changing ${name} to ${value}`);
-    setCurrentData(prevData => ({
-      ...prevData,
-      [name]: value,
-    }));
-    console.dir(currentData);
-  };
+  // ===============
 
   return (
     <>
