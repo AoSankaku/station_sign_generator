@@ -64,20 +64,14 @@ const App = () => {
   }
 
   const [currentStyle, setCurrentStyle] = useState("jreast");
-  // currentBaseScale depends on currentStyle
+
+  // currentBaseScale and currentCanvasHeight depends on currentStyle
   const [currentBaseScale, setCurrentBaseScale] = useState(1);
+  const [currentCanvasHeight, setCurrentCanvasHeight] = useState(0)
   useEffect(() => {
     switch (currentStyle) {
-      case "jreast": setCurrentBaseScale(JrEastSignBaseScale); break;
-      default: setCurrentBaseScale(1); break;
-    }
-  }, [currentStyle])
-  // currentCanvasHeight depends on currentStyle
-  const [currentCanvasHeight, setCurrentCanvasHeight] = useState(0);
-  useEffect(() => {
-    switch (currentStyle) {
-      case "jreast": setCurrentCanvasHeight(JrEastSignHeight); break;
-      default: setCurrentCanvasHeight(0); break;
+      case "jreast": setCurrentBaseScale(JrEastSignBaseScale); setCurrentCanvasHeight(JrEastSignHeight); break;
+      default: setCurrentBaseScale(1); setCurrentCanvasHeight(0); break;
     }
   }, [currentStyle])
   // We don't need useEffect here...right?
@@ -201,6 +195,5 @@ const App = () => {
     </>
   )
 }
-
 
 export default App
