@@ -79,19 +79,19 @@ const App = () => {
   const [saveSize, setSaveSize] = useState(JrEastSignBaseScale)
   const [saveSizeList, setSaveSizeList] = useState<ImageSize[]>([])
   useEffect(() => {
-    const result = []
+    const result: ImageSize[] = []
     const size = ["SS", "S", "M", "L", "XL", "XXL"]
-    for (let i = 1, l = 6; i <= l; i++) {
-      console.log(uriSize, i, currentBaseScale)
+    size.map((e, i) => {
+      console.log(e, i, currentBaseScale)
       result.push({
         label: `
-          ${currentCanvasWidth * i}
-           × ${currentCanvasHeight * i}
-            (${size[i - 1]})
+          ${currentCanvasWidth * (i + 1)}
+           × ${currentCanvasHeight * (i + 1)}
+            (${size[i]})
         `,
-        value: i
+        value: i + 1
       })
-    }
+    })
     setSaveSizeList(result)
   }, [currentCanvasHeight, currentData.ratio])
 
