@@ -88,7 +88,6 @@ const App = () => {
           ${currentCanvasWidth * i}
            × ${currentCanvasHeight * i}
             (${size[i - 1]})
-           - ${Math.round(uriSize * i / currentBaseScale * 0.78 / 1024 * 10) / 10}KB
         `,
         value: i
       })
@@ -114,15 +113,6 @@ const App = () => {
   }));
   */
 
-  const [uriSize, setUriSize] = useState(0)
-  useEffect(() => {
-    if (ref.current) {
-      const uri = ref.current.toDataURL({ pixelRatio: 1 })
-      const head = 'data:image/png;base64,';
-      setUriSize(uri.length - head.length)
-      console.log(uriSize)
-    }
-  }, [currentData])
   const handleSave = () => {
     if (ref.current) {
       const uri = ref.current.toDataURL({ pixelRatio: saveSize / currentBaseScale })
