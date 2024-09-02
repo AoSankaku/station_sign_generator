@@ -10,8 +10,8 @@ import DirectionsRailwayIcon from '@mui/icons-material/DirectionsRailway';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import FontDownloadIcon from '@mui/icons-material/FontDownload';
 import FontDownloadOutlinedIcon from '@mui/icons-material/FontDownloadOutlined';
-import SaveIcon from '@mui/icons-material/Save';
-import { SketchPicker } from 'react-color'
+//import SaveIcon from '@mui/icons-material/Save';
+import { ColorPicker, ColorService } from 'react-color-palette';
 import DirectInputStationProps from '../signs/DirectInputStationProps';
 import { useTranslation } from "react-i18next"
 import styled from 'styled-components';
@@ -198,8 +198,8 @@ const DirectInput: React.FC<DirectInputStationPropsWithHandleChange> = (props) =
           </Stack>
         </Grid>
       </Grid>
-      <SketchPicker color={props.baseColor} onChange={(color) => { handleColorChange("baseColor", color.hex) }} />
-      <SketchPicker color={props.lineColor} onChange={(color) => { handleColorChange("lineColor", color.hex) }} />
+      <ColorPicker color={ColorService.convert("hex", props.baseColor)} onChange={(color) => { handleColorChange("baseColor", color.hex) }} hideAlpha />
+      <ColorPicker color={ColorService.convert("hex", props.lineColor)} onChange={(color) => { handleColorChange("lineColor", color.hex) }} hideAlpha />
       <TextField fullWidth multiline variant="outlined" value={JSON.stringify(props, null, 2)} />
     </>
   )
