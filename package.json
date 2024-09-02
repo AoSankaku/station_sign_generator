@@ -31,7 +31,6 @@
     "react-konva": "^18.2.10",
     "react-share": "^5.1.0",
     "styled-components": "^6.1.12",
-    "use-debounce": "^10.0.3",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
