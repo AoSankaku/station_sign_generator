@@ -1,8 +1,9 @@
-import { useState, useEffect, forwardRef } from "react"
+import { Fragment, useState, useEffect, forwardRef } from "react"
 import StationProps from "./DirectInputStationProps"
 import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import Konva from "konva"
 import processStationNumber from "../../functions/processStationNumber"
+import { v7 as uuidv7 } from "uuid"
 
 import '../../assets/css/fonts.css'
 import styled from "styled-components"
@@ -274,10 +275,10 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
             <Text text={stationNameEnglish} width={width} x={0} y={yOffset + 98} fontSize={16} fontStyle='600' fontFamily='OverusedGrotesk' fill='black' align='center' />
             {reversedStationArea?.map((e, i) => {
               return (
-                <>
+                <Fragment key={uuidv7()}>
                   <Rect x={width - 40 + i * -22} y={yOffset + 14} fill={e.isWhite ? "white" : "black"} width={16} height={16} stroke="black" strokeWidth={1} />
                   <Text text={e.name} x={width - 39.5 + i * -22} y={yOffset + 14.5} fontSize={15} fontStyle='600' fontFamily='NotoSansJP' fill={e.isWhite ? "black" : "white"} align='center' />
-                </>
+                </Fragment>
               )
             })}
           </Layer>
