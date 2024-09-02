@@ -16,7 +16,7 @@
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@fontsource/roboto": "^5.0.14",
-    "@mui/icons-material": "^5.16.7",
+    "@mui/icons-material": "^6.0.1",
     "@mui/material": "^6.0.1",
     "country-flag-icons": "^1.5.13",
     "i18next": "^23.12.2",
@@ -31,6 +31,7 @@
     "react-konva": "^18.2.10",
     "react-share": "^5.1.0",
     "styled-components": "^6.1.12",
+    "use-debounce": "^10.0.3",
     "uuid": "^10.0.0"
   },
   "devDependencies": {
