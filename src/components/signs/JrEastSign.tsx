@@ -4,6 +4,7 @@ import { Rect, Layer, Stage, Text, Line } from 'react-konva'
 import Konva from "konva"
 import processStationNumber from "../../functions/processStationNumber"
 import { v7 as uuidv7 } from "uuid"
+import { isMobile } from "react-device-detect"
 
 import '../../assets/css/fonts.css'
 import styled from "styled-components"
@@ -112,7 +113,17 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
 
   const [canvasImage, setCanvasImage] = useState("")
   useEffect(() => {
-    (ref && 'current' in ref && ref.current) ? setCanvasImage(ref.current.toDataURL()) : setCanvasImage("")
+    const renderFunction = () => {
+      (ref && 'current' in ref && ref.current)
+        ? setCanvasImage(ref.current.toDataURL())
+        : setCanvasImage("")
+    }
+    if (isMobile && stageKey >= 2) {
+      const t = setTimeout(renderFunction, (isMobile ? 1000 : 0))
+      return () => clearTimeout(t)
+    } else {
+      renderFunction()
+    }
   }, [props, stageKey])
 
   return (
