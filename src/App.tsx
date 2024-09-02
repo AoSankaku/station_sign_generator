@@ -70,8 +70,14 @@ const App = () => {
   const [currentCanvasHeight, setCurrentCanvasHeight] = useState(0)
   useEffect(() => {
     switch (currentStyle) {
-      case "jreast": setCurrentBaseScale(JrEastSignBaseScale); setCurrentCanvasHeight(JrEastSignHeight); break;
-      default: setCurrentBaseScale(1); setCurrentCanvasHeight(0); break;
+      case "jreast":
+        setCurrentBaseScale(JrEastSignBaseScale);
+        setCurrentCanvasHeight(JrEastSignHeight);
+        break;
+      default:
+        setCurrentBaseScale(1);
+        setCurrentCanvasHeight(0);
+        break;
     }
   }, [currentStyle])
   // We don't need useEffect here...right?
