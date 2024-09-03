@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 import i18next from 'i18next';
 import { ManifestOptions } from 'vite-plugin-pwa';
 
-const generateManifest = (t: Function) => ({
+const generateManifest = (t: Function, l: string) => ({
   name: t('meta.pwa.name'),
   short_name: t('meta.pwa.short-name'),
   description: t('meta.description'),
@@ -22,6 +22,7 @@ const generateManifest = (t: Function) => ({
       type: 'image/png',
     },
   ],
+  start_url: `../?lang=${l}`,
 }) as (false | Partial<ManifestOptions> | undefined);
 
 // https://vitejs.dev/config/
@@ -34,7 +35,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
-      manifest: generateManifest(i18next.t),
+      manifest: generateManifest(i18next.t, i18next.language),
     }),
   ]
 }
