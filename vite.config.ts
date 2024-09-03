@@ -5,6 +5,8 @@ import { VitePWA } from 'vite-plugin-pwa';
 import i18next from 'i18next';
 import { ManifestOptions } from 'vite-plugin-pwa';
 
+const base = "/station_sign_generator/"
+
 const generateManifest = (t: Function, l: string) => ({
   name: t('meta.pwa.name'),
   short_name: t('meta.pwa.short-name'),
@@ -22,12 +24,12 @@ const generateManifest = (t: Function, l: string) => ({
       type: 'image/png',
     },
   ],
-  start_url: `../?lang=${l}`,
+  start_url: `../${base.slice(1)}?lang=${l}`,
 }) as (false | Partial<ManifestOptions> | undefined);
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/station_sign_generator/",
+  base: base,
 
   plugins: [
     react(),
