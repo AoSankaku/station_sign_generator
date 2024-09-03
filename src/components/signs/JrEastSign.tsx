@@ -118,7 +118,7 @@ const JrEastSign = forwardRef<Konva.Stage, StationProps>((props, ref: React.Ref<
         ? setCanvasImage(ref.current.toDataURL())
         : setCanvasImage("")
     }
-    if (isMobile && stageKey >= 2) {
+    if (isMobile && stageKey >= 1) {
       const t = setTimeout(renderFunction, (isMobile ? 1000 : 0))
       return () => clearTimeout(t)
     } else {
