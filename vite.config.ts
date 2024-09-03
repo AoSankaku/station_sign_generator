@@ -38,5 +38,4 @@ export default defineConfig({
       manifest: generateManifest(i18next.t, i18next.language),
     }),
   ]
-}
-)
+})
