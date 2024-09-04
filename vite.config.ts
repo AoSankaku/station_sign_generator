@@ -7,7 +7,7 @@ import { ManifestOptions } from 'vite-plugin-pwa';
 
 const base = "/station_sign_generator/"
 
-const generateManifest = (t: Function, l: string) => ({
+const generateManifest = (t: Function) => ({
   name: t('meta.pwa.name'),
   short_name: t('meta.pwa.short-name'),
   description: t('meta.description'),
@@ -24,7 +24,6 @@ const generateManifest = (t: Function, l: string) => ({
       type: 'image/png',
     },
   ],
-  start_url: `../${base.slice(1)}?lang=${l}`,
 }) as (false | Partial<ManifestOptions> | undefined);
 
 // https://vitejs.dev/config/
@@ -37,7 +36,7 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
-      manifest: generateManifest(i18next.t, i18next.language),
+      manifest: generateManifest(i18next.t),
     }),
   ]
 })
