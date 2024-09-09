@@ -4,6 +4,7 @@ import ViteYaml from '@modyfi/vite-plugin-yaml'
 import { VitePWA } from 'vite-plugin-pwa';
 import i18next from 'i18next';
 import { ManifestOptions } from 'vite-plugin-pwa';
+import vike from 'vike/plugin'
 
 const base = "/station_sign_generator/"
 
@@ -29,7 +30,6 @@ const generateManifest = (t: Function) => ({
 // https://vitejs.dev/config/
 export default defineConfig({
   base: base,
-
   plugins: [
     react(),
     ViteYaml(),
@@ -38,5 +38,10 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: generateManifest(i18next.t),
     }),
-  ]
+    vike({
+      prerender: {
+        noExtraDir: true
+      }
+    })
+  ],
 })

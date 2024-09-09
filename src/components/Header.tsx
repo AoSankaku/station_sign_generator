@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next"
+import { useNavigate } from "react-router-dom";
 import { AppBar, Container, IconButton, Tooltip, Box, Menu, Typography, MenuItem, Alert, Snackbar } from "@mui/material";
 import { Share } from "@mui/icons-material";
 import TrainIcon from '@mui/icons-material/Train';
@@ -6,8 +7,11 @@ import { JP, US } from "country-flag-icons/react/3x2";
 import { ReactElement, useEffect, useState } from "react";
 import { BsTwitter, BsCopy } from "react-icons/bs";
 import { SiMisskey, SiMastodon, SiLine, SiX, SiReddit } from "react-icons/si";
+import { usePageContext } from "vike-react/usePageContext";
 
 const Header = () => {
+  const pageContext = usePageContext();
+  const nav = useNavigate()
   const { t, i18n } = useTranslation();
   type lang = {
     langName: string,
@@ -161,14 +165,11 @@ const Header = () => {
           >
             {langs.map((e) => (
               <MenuItem key={e.lang} style={{ display: 'flex', gap: '10px' }} onClick={() => {
-                i18n.changeLanguage(e.lang);
-                const baseUrl = new URL(url)
                 if (e.lang !== 'ja') {
-                  baseUrl.searchParams.set('lang', e.lang)
+                  nav('/' + e.lang)
                 } else {
-                  baseUrl.searchParams.delete('lang')
+                  nav('/')
                 }
-                window.history.pushState({}, '', baseUrl)
                 handleCloseLangMenu();
               }}>
                 {e.flag}<Typography textAlign="center">{e.langName}</Typography>
