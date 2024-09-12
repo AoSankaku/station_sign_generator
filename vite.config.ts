@@ -6,7 +6,7 @@ import i18next from 'i18next';
 import { ManifestOptions } from 'vite-plugin-pwa';
 import vike from 'vike/plugin'
 
-const base = "/station_sign_generator/"
+export const base = "/station_sign_generator/"
 
 const generateManifest = (t: Function) => ({
   name: t('meta.pwa.name'),
