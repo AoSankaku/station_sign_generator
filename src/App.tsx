@@ -9,14 +9,24 @@ import DirectInput from './components/inputs/DirectInput';
 import InputStationInfo from './components/InputStationInfo';
 import { useTranslation } from "react-i18next"
 import { v7 as uuidv7 } from 'uuid'
+import { useData } from 'vike-react/useData';
+import { Data } from './pages/index/+data';
 
 // You have to import height and scale for every child station sign component!!!
 import JrEastSign, { height as JrEastSignHeight, scale as JrEastSignBaseScale } from './components/signs/JrEastSign'
+import { changeLanguage } from 'i18next';
 
 const App = () => {
 
   const ref = useRef<Konva.Stage>(null)
   const { t } = useTranslation()
+
+  const data: Data = useData()
+  const { locale } = data
+  console.dir(data)
+  useEffect(() => {
+    locale === "" ? changeLanguage("ja") : changeLanguage(locale)
+  }, [data])
 
   // Default Value - Will be replaced with LocalStorage data
   const [currentData, setCurrentData] = useState<DirectInputStationProps>({
