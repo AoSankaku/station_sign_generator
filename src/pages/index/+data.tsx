@@ -35,22 +35,6 @@ export const data = (pageContext: { locale: string }) => {
     </>
   })
 
-  /*
-  title={t("meta.title")}
-  meta={[
-    { name: 'description', content: t("meta.description") },
-    { property: 'og:url', content: url },
-    { property: 'og:type', content: "website" },
-    { property: 'og:title', content: t("meta.title") },
-    { property: 'og:description', content: t("meta.description") },
-    { property: 'og:image', content: ogpImageUrl },
-    { property: 'og:site_name', content: t("meta.title") },
-    { name: 'twitter:card', content: "summary_large_image" },
-    { name: 'twitter:site', content: "@Ao_Sankaku" },
-  ]}
-  htmlAttributes={{ lang: i18n.language }}
-  */
-
   const data: Data = {
     locale: locale
   }
