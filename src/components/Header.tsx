@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next"
-import { useNavigate } from "react-router-dom";
+import { navigate } from "vike/client/router";
 import { AppBar, Container, IconButton, Tooltip, Box, Menu, Typography, MenuItem, Alert, Snackbar } from "@mui/material";
 import { Share } from "@mui/icons-material";
 import TrainIcon from '@mui/icons-material/Train';
@@ -9,7 +9,6 @@ import { BsTwitter, BsCopy } from "react-icons/bs";
 import { SiMisskey, SiMastodon, SiLine, SiX, SiReddit } from "react-icons/si";
 
 const Header = () => {
-  const nav = useNavigate()
   const { t, i18n } = useTranslation();
   type lang = {
     langName: string,
@@ -164,9 +163,9 @@ const Header = () => {
             {langs.map((e) => (
               <MenuItem key={e.lang} style={{ display: 'flex', gap: '10px' }} onClick={() => {
                 if (e.lang !== 'ja') {
-                  nav('/' + e.lang)
+                  navigate('./' + e.lang)
                 } else {
-                  nav('/')
+                  navigate('./')
                 }
                 handleCloseLangMenu();
               }}>
