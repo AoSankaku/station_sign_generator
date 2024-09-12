@@ -6,8 +6,8 @@ import '../../index.css'
 import "react-color-palette/css";
 import "../../i18n/configs"
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import Head from '../../Head.tsx'
+import { CssBaseline } from '@mui/material';
+import***REMOVED*** from './***REMOVED***.tsx';
 
 
 const darkTheme = createTheme({
@@ -22,10 +22,8 @@ function Page() {
   return (
     <React.StrictMode>
       <ThemeProvider theme={darkTheme}>
-        <BrowserRouter basename='/station_sign_generator/'>
-          <CssBaseline />
-          <App />
-        </BrowserRouter>
+        <CssBaseline />
+        <Temp />
       </ThemeProvider>
     </React.StrictMode>
   )

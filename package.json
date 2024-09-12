@@ -34,8 +34,8 @@
     "react-share": "^5.1.0",
     "styled-components": "^6.1.12",
     "uuid": "^10.0.0",
-    "vike": "^0.4.193",
-    "vike-react": "^0.5.5"
+    "vike": "^0.4.195",
+    "vike-react": "^0.5.6"
   },
   "devDependencies": {
     "@modyfi/vite-plugin-yaml": "^1.1.0",

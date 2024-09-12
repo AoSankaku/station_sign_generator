@@ -1028,7 +1028,7 @@
   resolved "https://registry.yarnpkg.com/@brillout/require-shim/-/require-shim-0.1.2.tgz#a3a93e2f46608735d0363c7f38979fcd1bbfb2ad"
   integrity sha512-3I4LRHnVZXoSAsEoni5mosq9l6eiJED58d9V954W4CIZ88AUfYBanWGBGbJG3NztaRTpFHEA6wB3Hn93BmmJdg==
 
-"@brillout/vite-plugin-server-entry@^0.4.10":
+"@brillout/vite-plugin-server-entry@^0.4.11":
   version "0.4.12"
   resolved "https://registry.yarnpkg.com/@brillout/vite-plugin-server-entry/-/vite-plugin-server-entry-0.4.12.tgz#1d8308d9b4393e9018355dad7d500e33aa81fb07"
   integrity sha512-d2GPMPFfKEIjajW6wylIL9QsW4Sp/QyY7yr1FDxpgehgcgiXJUjRSvHBt0Ynyb4PtOyeLbhJECVIKwVMU4+BmQ==
@@ -4504,23 +4504,23 @@ uuid@^10.0.0:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-10.0.0.tgz#5a95aa454e6e002725c79055fd42aaba30ca6294"
   integrity sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==
 
-vike-react@^0.5.5:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/vike-react/-/vike-react-0.5.5.tgz#8b8a24a2ba050ec9e6ef278bd8cd0fc3fb3aedb9"
-  integrity sha512-YfGAAD9PWyQOWKzJgNMLHD95LwWQci4me1T4KCPCyynDGHmT7ki4HD7vU+B+CMS28IA/Zbx3tn/mUw27hWjQLA==
+vike-react@^0.5.6:
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/vike-react/-/vike-react-0.5.6.tgz#844a84290bc11b4762ccfc3fe8034e4f598a15a1"
+  integrity sha512-Dj8bsUeWJZ834JeZsO9WKX7I8eBNttyuloxhJrKgPz+vT5TP8KboTtaOUiWd8ZhppnnWROTMO/W7rcajXTxcnw==
   dependencies:
     react-streaming "^0.3.42"
 
-vike@^0.4.193:
-  version "0.4.193"
-  resolved "https://registry.yarnpkg.com/vike/-/vike-0.4.193.tgz#cbd5bbdb2ac3867d9a0b81eb01e57820338db053"
-  integrity sha512-nrqSXfocmm10asmoYrczO9iO4aZZ9SNygbpDTn0emmOPUFxROW3MUd8XcuBWJh6QVUTN4KiZYZDZGBMgPfhdbg==
+vike@^0.4.195:
+  version "0.4.195"
+  resolved "https://registry.yarnpkg.com/vike/-/vike-0.4.195.tgz#3a47a517d8aa160ed57fde58aebc46a5be8834d1"
+  integrity sha512-I8ltb12bSz6aU2Rf+lEzvVVvcKedTav+cnGYTsposfzg5GIVc9YPeUBV8zgg93jUosxgIG0UExMh7EGuR3gQeg==
   dependencies:
     "@brillout/import" "^0.2.3"
     "@brillout/json-serializer" "^0.5.13"
     "@brillout/picocolors" "^1.0.14"
     "@brillout/require-shim" "^0.1.2"
-    "@brillout/vite-plugin-server-entry" "^0.4.10"
+    "@brillout/vite-plugin-server-entry" "^0.4.11"
     acorn "^8.0.0"
     cac "^6.0.0"
     es-module-lexer "^1.0.0"
