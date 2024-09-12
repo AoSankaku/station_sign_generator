@@ -37,7 +37,8 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+        # Revert this to ./dist when you remove vike
+          path: ./dist/client
 
   deploy:
     environment:
