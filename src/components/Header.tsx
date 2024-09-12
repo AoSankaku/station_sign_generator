@@ -7,10 +7,8 @@ import { JP, US } from "country-flag-icons/react/3x2";
 import { ReactElement, useEffect, useState } from "react";
 import { BsTwitter, BsCopy } from "react-icons/bs";
 import { SiMisskey, SiMastodon, SiLine, SiX, SiReddit } from "react-icons/si";
-import { usePageContext } from "vike-react/usePageContext";
 
 const Header = () => {
-  const pageContext = usePageContext();
   const nav = useNavigate()
   const { t, i18n } = useTranslation();
   type lang = {

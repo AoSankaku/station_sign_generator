@@ -2,9 +2,7 @@ export { onBeforeRoute }
 
 import { modifyUrl } from 'vike/modifyUrl'
 import type { Url } from 'vike/types'
-import { redirect } from 'vike/abort'
-
-const availableLanguages = ["", "en"]
+import { languages } from '../i18n/configs'
 
 interface PageContext {
   urlParsed: Url;
@@ -15,19 +13,7 @@ interface PageContext {
 }
 
 function onBeforeRoute(pageContext: PageContext) {
-  const { urlWithoutLocale, locale, isValidLocale } = extractLocale(pageContext.urlParsed)
-
-  if (!isValidLocale) {
-    console.warn(`Invalid locale: ${locale}`)
-    const redirectUrl = modifyUrl(pageContext.urlParsed.href, { pathname: urlWithoutLocale })
-    pageContext.response = {
-      statusCode: 302,
-      headers: {
-        Location: redirectUrl
-      }
-    }
-    throw redirect(redirectUrl)
-  }
+  const { urlWithoutLocale, locale } = extractLocale(pageContext.urlParsed)
 
   return {
     pageContext: {
@@ -41,8 +27,7 @@ function onBeforeRoute(pageContext: PageContext) {
 
 function extractLocale(url: Url) {
   const { pathname } = url
-  const locale = pathname.split("/")[1]
-  const isValidLocale = availableLanguages.includes(pathname.split("/")[1])
+  const locale = languages.includes(pathname.split("/")[1]) ? pathname.split("/")[1] : ""
 
   // Determine the locale, for example:
   //  /en-US/film/42 => en-US
@@ -57,5 +42,5 @@ function extractLocale(url: Url) {
   // Reconstruct full URL
   const urlWithoutLocale = modifyUrl(url.href, { pathname: pathnameWithoutLocale })
 
-  return { locale, urlWithoutLocale, isValidLocale }
+  return { locale, urlWithoutLocale }
 }

@@ -8,7 +8,6 @@ import "../../i18n/configs"
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Head from '../../Head.tsx'
-import { HelmetProvider } from 'react-helmet-async'
 
 
 const darkTheme = createTheme({
@@ -22,15 +21,12 @@ export { Page }
 function Page() {
   return (
     <React.StrictMode>
-      <HelmetProvider>
-        <ThemeProvider theme={darkTheme}>
-          <BrowserRouter basename='/station_sign_generator/'>
-            <Head />
-            <CssBaseline />
-            <App />
-          </BrowserRouter>
-        </ThemeProvider>
-      </HelmetProvider>
+      <ThemeProvider theme={darkTheme}>
+        <BrowserRouter basename='/station_sign_generator/'>
+          <CssBaseline />
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </React.StrictMode>
   )
 }

@@ -39,9 +39,7 @@ export default defineConfig({
       manifest: generateManifest(i18next.t),
     }),
     vike({
-      prerender: {
-        noExtraDir: true
-      }
+      prerender: true
     })
   ],
 })
