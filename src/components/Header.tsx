@@ -124,7 +124,7 @@ const Header = () => {
     switch (country) {
       case 'ja': return <JP />;
       case 'en': return <US />;
-      default: throw new Error("Language not recognized... how did you caused this error?");
+      default: throw new Error("Language not recognized... how did you invoke this error?");
     }
   }
 
