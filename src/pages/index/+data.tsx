@@ -25,7 +25,7 @@ export const data = (pageContext: { locale: string }) => {
     title: i18n.t("meta.title"),
     description: i18n.t("meta.description"),
     lang: i18n.language,
-    image: baseName + ogp,
+    image: baseUrl + ogp,
     favicon: favicon,
     Head: <>
       <meta name="og:type" content="website" />
