@@ -34,7 +34,7 @@ const App = () => {
       // When passed locale is blank, there are two scenarios:
       // 1. The locale is Japanese, so the locale is intentionally ""
       // 2. The locale is not passed by useData(Vike's fault)
-      location.pathname[2] ? changeLanguage(locale) : changeLanguage("ja");
+      location.pathname[2] ? changeLanguage(location.pathname[2]) : changeLanguage("ja");
     } else {
       // When passed locale is not blank, it is ok to set locale as the data says because the locale has already been filtered
       changeLanguage(locale)
