@@ -27,7 +27,11 @@ function onBeforeRoute(pageContext: PageContext) {
 
 function extractLocale(url: Url) {
   const { pathname } = url
-  const locale = languages.includes(pathname.split("/")[1]) ? pathname.split("/")[1] : ""
+  // On development environment, "pathname[1]" equals to locale but on production, it's "station_name_generator", a base name.
+  // This seems COMPLETELY Vike's fault, isn't it?
+  const locale = (pathname[1] === "station_sign_generator")
+    ? languages.includes(pathname.split("/")[2]) ? pathname.split("/")[2] : ""
+    : languages.includes(pathname.split("/")[1]) ? pathname.split("/")[1] : ""
 
   // Determine the locale, for example:
   //  /en-US/film/42 => en-US
