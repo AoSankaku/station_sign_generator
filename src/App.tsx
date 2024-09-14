@@ -25,7 +25,22 @@ const App = () => {
   const { locale } = data
   console.dir(data)
   useEffect(() => {
-    locale === "" ? changeLanguage("ja") : changeLanguage(locale)
+    const urlLocale = location.pathname.split("/");
+    console.dir(urlLocale)
+    // Force apply language and head.title by path on direct access by URL
+    // Vike destroys head elements on locale change, and won't pass me locale from useData ...for some reason... nobody but he knows why
+    // Furthermore these bugs won't happen neither on development environment nor production build local serve(vite preview)... this sxxxs
+    if (locale === "") {
+      // When passed locale is blank, there are two scenarios:
+      // 1. The locale is Japanese, so the locale is intentionally ""
+      // 2. The locale is not passed by useData(Vike's fault)
+      location.pathname[2] ? changeLanguage(locale) : changeLanguage("ja");
+    } else {
+      // When passed locale is not blank, it is ok to set locale as the data says because the locale has already been filtered
+      changeLanguage(locale)
+    }
+    // The code below was used when language is changed manually
+    // locale === "" ? changeLanguage("ja") : changeLanguage(locale)
   }, [data])
 
   // Default Value - Will be replaced with LocalStorage data
@@ -149,7 +164,7 @@ const App = () => {
     console.log(`Changing ${name} to ${value}`);
     setCurrentData(prevData => ({
       ...prevData,
-      [name]: value,
+      [name]: typeof (value) === "string" ? value.slice(0, 120) : value,
     }));
     console.dir(currentData);
   };
@@ -181,7 +196,7 @@ const App = () => {
       />
       <Box sx={{ width: '100%', padding: '25px' }}>
         <Grid container spacing={2} style={{ padding: '10px' }}>
-          <Grid item xs={12} sm={7} lg={10}>
+          <Grid item xs={12} sm={7} lg={9}>
             <FormControl fullWidth>
               <InputLabel id='save-image-size-label'>{t("input.image-size")}</InputLabel>
               <Select labelId='save-image-size' value={saveSize} label={t("input.image-size")} onChange={(e: SelectChangeEvent<number>) => setSaveSize(e.target.value as number)}>
@@ -191,7 +206,7 @@ const App = () => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={5} lg={2} style={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid item xs={12} sm={5} lg={3} style={{ display: 'flex', justifyContent: 'center' }}>
             <Button color="secondary" size="large" variant="contained" onClick={() => handleSave()} style={{ fontWeight: 700 }}><Download style={{ marginRight: '10px' }} />{t("input.save")}</Button>
           </Grid>
         </Grid>
