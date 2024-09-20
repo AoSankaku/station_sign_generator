@@ -26,6 +26,7 @@ const App = () => {
   console.dir(data)
   useEffect(() => {
     const urlLocale = location.pathname.split("/");
+    console.info("Current passed locale:")
     console.dir(urlLocale)
     // Force apply language and head.title by path on direct access by URL
     // Vike destroys head elements on locale change, and won't pass me locale from useData ...for some reason... nobody but he knows why
